@@ -1,0 +1,47 @@
+#!/bin/bash
+# ensure that there's the correct symlink to the build directory
+# version 2.x: prepare GimpPorts dir tree
+# (c) 2008 - 2010 by skl, GPL v2 or later
+# version 2.2.2
+#
+MACPORTS=/tmp/skl/Gimp.app/Contents/Resources
+BUILDDIR=~/src/macports/Gimp-app
+if [ ! -e "$BUILDDIR" ]; then
+  mkdir -p "$BUILDDIR"
+fi
+
+# get OS X version. 8=Tiger, 9=Leopard, 10=Snowleopard
+OS=`uname -r | cut -d "." -f1`
+
+echo -n setting symlink to build directory...
+test -d /tmp/skl || mkdir -p /tmp/skl
+cd /tmp/skl
+test -L Gimp.app && rm Gimp.app
+ln -s "$BUILDDIR" Gimp.app
+echo done.
+# preparing GimpPorts tree to be set up correctly
+if [ ! -e $MACPORTS/bin/portindex ]; then
+  exit
+fi
+echo -n preparing GimpPorts directory...
+if [ ! -d ~/src/macports/GimpPorts ]; then
+  echo "*** There is no 'GimpPorts' directory. Please check your installation"
+  exit
+fi
+cd ~/src/macports/GimpPorts/ports
+$MACPORTS/bin/portindex
+cd -
+# copy distfiles we provide in GimpPorts
+cp -R ~/src/macports/GimpPorts/distfiles "$BUILDDIR/Contents/Resources/var/macports" 2&>/dev/null
+
+# copy Tiger specific ports
+if [ $OS -eq 8 ]; then
+  cp -R ~/src/macports/GimpPorts/Tiger/ports ~/src/macports/GimpPorts
+fi
+
+#rm -rf ~/src/macports/GimpPorts/Applications/*
+echo done.
+
+# checking wether PATH already includes MacPorts and set it
+# echo $PATH | grep -q Contents/Resources/bin || export PATH="$MACPORTS/bin:$MACPORTS/sbin:$PATH"
+

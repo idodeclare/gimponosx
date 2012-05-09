@@ -1,0 +1,121 @@
+#/!bin/bash
+# Copyright (C) 2008-2010 Simone Karin Lehmann, simone at lisanet dot de 
+# gp-makeports 2.0
+#
+# This builds MacPorts for compilng and packaging Gimp on Mac OS X
+# for more information see http://gimp.lisanet.de or http://www.wilber-loves-apple.org
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+#
+
+MP=/tmp/skl/Gimp.app/Contents/Resources
+if [ ! -e "/tmp/skl/Gimp.app" ]; then
+  echo "*** Please make sure that there is a symlink '/tmp/skl/Gimp.app' pointing to your directory where Gimp is compiled. Using these utilities, this should be a directory in '~/src/macports' usually     'Gimp-app'"
+exit
+fi
+
+# get OS X version. 8=Tiger, 9=Leopard, 10=Snowleopard
+OS=`uname -r | cut -d "." -f1`
+
+BUILDDIR=~/src/macports/Gimp-app
+MPSRC=MacPorts-1.8.1
+MACPORTS=/tmp/skl/Gimp.app/Contents/Resources
+
+# test if MacPorts is already installed
+if [ -e "$MACPORTS/bin/port" ]; then
+  echo MacPorts is already installed
+  # checking wether PATH already includes MacPorts and set it
+  echo $PATH | grep -q Contents/Resources/bin || export PATH="$MACPORTS/bin:$MACPORTS/sbin:$PATH"
+  exit
+fi
+
+# compile MacPorts and do a selfupdate
+if [ ! -d "$MPSRC" ]; then
+  #curl -LO http://svn.macports.org/repository/macports/downloads/$MPSRC/$MPSRC.tar.bz2
+  curl -LO http://distfiles.macports.org/MacPorts/$MPSRC.tar.bz2
+  echo -n extracting MacPorts sources ...
+  bunzip2 $MPSRC.tar.bz2
+  tar -xf $MPSRC.tar
+  rm $MPSRC.tar
+  echo done.
+fi
+
+# this is the main part on which this building and packaging process relies on
+echo Compiling and updating MacPorts...
+cd $MPSRC
+./configure --prefix $MACPORTS --with-tclpackage=$MACPORTS/share/macports/Tcl
+make clean
+make
+sudo make install
+cd - > /dev/null
+rm -rf $MPSRC
+# checking wether PATH already includes MacPorts and set it
+echo $PATH | grep -q Contents/Resources/bin || export PATH="$MACPORTS/bin:$MACPORTS/sbin:$PATH"
+
+
+# do a selfupdate
+# echo Now selfupdating MacPorts. Please wait ...
+# sudo port selfupdate
+
+# give our build directory user perms so we don't need sudo in further steps. Avoid sudo whenever it's possible!
+sudo chown -R $UID "$BUILDDIR"
+
+# modifiy macports configuration
+cd GimpPorts/ports
+PORTSDIR=`pwd`
+cd - > /dev/null
+
+# patch macports to disable selfupdate
+# MacPorts should be 1.8.1 to compile GIMP on OS X. So I don't get into trouble if the MacPorts guys will
+# drop backward compatibility, as they did in nearly every update. And they don't provide a smooth transistion path.
+# This is a pain for developers.... 
+
+sudo cp GimpPorts/macports/macports.tcl "$BUILDDIR/Contents/Resources/share/macports/Tcl/macports1.0"
+
+# make our local Portfiles available
+cd "$BUILDDIR/Contents/Resources/etc/macports"
+# cp sources.conf sources.tmp
+echo "file://$PORTSDIR [default]" > sources.conf
+# cat sources.tmp >> sources.conf
+# rm sources.tmp
+
+echo "applications_dir $HOME/src/macports/GimpPorts/Applications" >> macports.conf
+echo "+universal" >> variants.conf
+cd - > /dev/null
+cd GimpPorts/ports
+portindex
+cd - > /dev/null
+
+# copy distfiles we provide in GimpPorts
+cp -R GimpPorts/distfiles "$BUILDDIR/Contents/Resources/var/macports"
+
+# copy Tiger specific ports
+if [ $OS -eq 8 ]; then
+  cp -R ~/src/macports/GimpPorts/Tiger/ports ~/src/macports/GimpPorts
+fi
+
+# now give some hints
+echo
+echo Yor MacPorts installation is now ready to build Gimp for Mac OS X.
+echo Please either edit your environment to include the following PATH variable 
+echo or type: 
+echo 'export PATH=/tmp/skl/Gimp.app/Contents/Resources/bin:$PATH'
+echo "and than:"
+echo sudo port install gimp
+
+
+
+
+

@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+# (c) 2009, Simone Karin Lehmann, simone at lisanet dot de
+# GPL version 2 or later
+# quitApp
+
+killall gimp-2.6
+

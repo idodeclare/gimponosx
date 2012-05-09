@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# (c) 2008, Simone Karin Lehmann, simone at lisanet dot de
+# GPL version 2 or later
+# openDoc 1.1 Tiger
+#
+# with Tiger specific code from
+# Author: Aaron Voisine <aaron@voisine.org>
+# modified by: Christoph Schroeder <webmaster@wilber-loves-apple.org>
+# modified by: Steven Borley <steven.borley@diode.demon.co.uk>
+
+DIR=`dirname "$0"`
+cd "$DIR/../.."
+APPDIR=`pwd`
+cd - > /dev/null
+# edit the next line to match version file
+VERSION=_VERSION_
+LNDIR=/tmp/skl/Gimp.app
+if [ ! -e $LNDIR/Contents/Resouces/v$VERSION ]; then
+	rm -f $LNDIR
+	mkdir -p /tmp/skl
+	ln -s "$APPDIR" $LNDIR
+fi
+
+BINDIR="/tmp/skl/Gimp.app/Contents/Resources/bin"
+
+export "DISPLAY=`cat /tmp/$UID/TemporaryItems/display`"
+
+exec "$BINDIR/gimp-remote" "$@"

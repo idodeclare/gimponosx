@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# (c) 2008, Simone Karin Lehmann, simone at lisanet dot de
+# GPL version 2 or later
+# openDoc 1.1 
+
+DIR=`dirname "$0"`
+cd "$DIR/../.." 
+APPDIR=`pwd`
+VERSION=_VERSION_
+cd - > /dev/null
+LNDIR=/tmp/skl/Gimp.app
+if [ ! -e $LNDIR/Contents/Resources/v$VERSION ]; then
+	rm -f $LNDIR
+	mkdir -p /tmp/skl
+	chmod a+w /tmp/skl
+	ln -s "$APPDIR" $LNDIR
+fi
+
+CWD="/tmp/skl/Gimp.app/Contents/Resources"
+
+exec "$CWD/bin/gimp-remote" "$@"

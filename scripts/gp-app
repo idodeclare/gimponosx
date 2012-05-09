@@ -1,0 +1,246 @@
+#/!bin/bash
+# Copyright (C) 2008-2009 Simone Karin Lehmann, simone at lisanet dot de 
+# gp-app 1.9.5
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+#
+
+MP=/tmp/skl/Gimp.app/Contents/Resources
+if [ ! -e "$MP" ]; then
+  echo "*** Please make sure that there is a symlink '/tmp/skl/Gimp.app' pointing to your directory where Gimp is compiled. Using these utilities, this should be a directory in '~/src/macports' usually 'Gimp.app' or 'Gimp-app'"
+exit
+fi
+
+# get commandline parameter. There is only one, namely the patch level number of this release
+PL=$1
+
+# get OS X version. 8=Tiger, 9=Leopard, 10=Snowleopard
+OS=`uname -r | cut -d "." -f1`
+if [ $OS -eq 9 -o $OS -eq 10 ]; then
+GTKFONT=9.8
+THEME=Leopard
+else
+GTKFONT=12.5
+THEME=Tiger
+fi
+
+# set OS code name
+OSNAME=$THEME
+if [ $OS -eq 10 ]; then
+	OSNAME=Snowleopard
+fi
+
+
+VERSION=`eval "$MP/bin/gimp" -v | grep Program | cut -d " " -f 6`
+echo Gimp version is: $VERSION
+if [ "$PL" != "" ]; then
+	echo patch level is: $PL
+fi
+echo Now trying to build your new Gimp app ...
+
+DIR=`pwd`
+GIMPAPP="$DIR/Gimp-new-app/Contents/Resources"
+GP="$DIR/GimpPorts"
+
+cp -R "Gimp-app-template" "Gimp-new-app"
+# remove svn meta data
+find "Gimp-new-app" -name ".svn" -print0 | xargs -0 rm -rf
+
+# set link for help directory
+# /tmpskl/Gimphelp is set by bin/help-locale and points to teh default help directory or to any user installed help 
+ln -s /tmp/skl/Gimphelp "$GIMPAPP/share/gimp/2.0/help"
+
+# copy binaries from gimp-launcher 
+# In MacPorts 1.7 there will be a config option
+cp "$MP/Applications/ScriptExec.app/Contents/MacOS/ScriptExec" "$GIMPAPP/../MacOS/Gimp"
+cp -R "$MP/Applications/ScriptExec.app/Contents/Resources/MenuBar.nib" "$GIMPAPP"
+
+# copy binaries
+echo copying binaries ...
+BINS="dbus-daemon dbus-launch gimp-2.6 gs python2.5"
+if [ $OS -eq 9 -o $OS -eq 10 ]; then
+  # on Leopard SnowLeopard gs is a link to gsc
+  BINS="$BINS gsc"
+fi
+cd "$MP/bin"
+for i in $BINS
+do
+cp -R $i "$GIMPAPP/bin"
+done
+
+
+# etc subdirs
+echo copying etc direcories and files ...
+ETC="dbus-1 fonts gimp gtk-2.0 pango"
+cd "$MP/etc"
+for i in $ETC; do cp -R $ETC "$GIMPAPP/etc"; done
+
+
+# libdirs and .so and .dylib
+echo copying libraries ...
+# next line is for gegl 0.1 which is needed by gtk 2.16
+# gtk 2.16 does handle graphic tablets correctly
+LIBDIRS="gegl-0.0 gimp gtk-2.0 pango python2.5"
+# the next line is for gegl 0.1.2 which is needed by gtk > 2.16
+# but gtk > 2.16 doesn't handle graphic tablets correctly.
+#LIBDIRS="gegl-0.1 gimp gtk-2.0 pango python2.5"
+cd "$MP/lib"
+if [ $OS -eq 8 ]; then 
+  for i in *.so; do cp -R "$i" "$GIMPAPP/lib"; done
+fi
+for i in *.dylib; do cp -R "$i" "$GIMPAPP/lib"; done
+for i in $LIBDIRS; do cp -R "$i" "$GIMPAPP/lib"; done
+
+cd "$MP"
+cp -R Library "$GIMPAPP"
+#cp -R libexec "$GIMPAPP"
+
+echo cleaning up some stuff in lib directories ...
+cd "$GIMPAPP"
+rm -rf lib/gtk-2.0/include
+rm -rf lib/python2.5/test
+rm -rf lib/python2.5/*/test
+find lib \( -name "*.la" -or -name "*.a" \)  -delete
+find . -name "*.pyo" -delete
+
+# sharedirs
+echo copying share subdirectories ...
+SHAREDIRS="gimp gimp-lqr-plugin ghostscript gutenprint lensfun locale mime poppler pygobject pygtk"
+cd "$MP/share"
+for i in $SHAREDIRS; do cp -R "$i" "$GIMPAPP/share"; done
+
+echo cleaning up some stuff in share ...
+cd "$GIMPAPP/share"
+rm -rf gutenprint/doc
+rm -rf gutenprint/samples
+rm -rf ghostscript/fonts
+rm -rf ghostscript/*/doc
+rm -rf ghostscript/*/examples
+
+
+echo cleaning up locales ...
+find locale \( \! -name "gtk*" -and \! -name "gimp*" -and \! -name "ufraw*" \! -name "gutenprint*" \) -delete
+
+
+# configuring some files
+echo "configuring some files ..."
+# dbus
+sed -i "" -e "s|Gimp.app/Contents/Resources/var|var|g" "$GIMPAPP/etc/dbus-1/system.conf"
+# fonts
+sed -i "" -e "s|<dir>/tmp/skl.*fonts</dir>|<dir>~/Library/Application Support/Gimp/fonts</dir>|g" "$GIMPAPP/etc/fonts/fonts.conf"
+sed -i "" -e "s|<dir>~/\.fonts</dir>|<dir>~/Library/Fonts</dir>|g" "$GIMPAPP/etc/fonts/fonts.conf"
+sed -i "" -e "s|<cachedir>/tmp/skl.*/fontconfig</cachedir>|<cachedir>~/Library/Application Support/Gimp/cache/fonts</cachedir>|g" "$GIMPAPP/etc/fonts/fonts.conf"
+sed -i "" -e "s|<cachedir>~/\.fontconfig</cachedir>||g" "$GIMPAPP/etc/fonts/fonts.conf"
+# gtk
+cat << EOF >> "$GIMPAPP/etc/gtk-2.0/gtkrc"
+
+# this is for Gimp's print preview
+gtk-print-preview-command="open %f"
+# this is Mac OS X default font
+gtk-font-name = "Lucida Grande $GTKFONT"
+EOF
+if [ $OS -eq 9 -o $OS -eq 10 ]; then
+cat << EOF >> "$GIMPAPP/etc/gtk-2.0/gtkrc"
+# This is the formula to calculate the font size for GIMP's menus
+# font_size = (72 / X11_dpi) * 13
+#
+# X11_dpi is the dpi value your X11 is set to. Since 10.5.7 this is by default: 96 dpi
+# to change the dpi setting open Terminal.app and type
+#     defaults write org.x.X11 dpi -int <new-dpi-value>
+# BTW, the default font size for Mac OS X is 13 pixel.
+#
+# X11 set to 96 dpi
+# gtk-font-name="Lucida Grande 9.8"
+# X11 set to 113 dpi 
+# gtk-font-name = "Lucida Grande 8.3"
+
+EOF
+fi
+# gimp
+# cat "$GIMPAPP/etc/gtk-2.0/gtkrc" >> "$GIMPAPP/etc/gimp/2.0/gtkrc"
+cat << EOF >> "$GIMPAPP/etc/gimp/2.0/gimprc"
+
+# configuration default for Mac OS X, by skl
+(num-processors 2)
+(interpolation-type lanczos)
+(default-image
+     (comment "Created with GIMP on a Mac"))
+(color-management
+    (mode display)
+    (rgb-profile "/System/Library/ColorSync/Profiles/sRGB Profile.icc")
+    (cmyk-profile "/System/Library/ColorSync/Profiles/Generic CMYK Profile.icc")
+    (display-profile-from-gdk yes)
+    (display-rendering-intent perceptual)
+    (simulation-rendering-intent perceptual)
+    (display-module "CdisplayLcms"))
+(theme "$THEME")
+(use-help yes)
+(show-help-button yes)
+(help-browser web-browser)
+(web-browser "open %s")
+(toolbox-window-hint normal)
+(dock-window-hint normal)
+EOF
+
+# sessionrc
+sed -i "" -e "s|size.*820|size 204 680|g" "$GIMPAPP/etc/gimp/2.0/sessionrc"
+sed -i "" -e "s|position 420|position 380|g" "$GIMPAPP/etc/gimp/2.0/sessionrc"
+
+# Tiger needs some slightly other scripts and font sizes
+if [ $OS -eq 8 ]; then
+  # binaries for Tiger
+  echo copying Tiger specific binaries ...
+  TIGERBINS="script openDoc bin/getdisplay.sh"
+  cd "$GP/Tiger"
+  for i in $TIGERBINS
+  do
+  cp -R $i "$GIMPAPP/$i"
+  done
+  cd -
+  # remove QuickLook plugin
+  rm -rf "$GIMPAPP/../Library"
+  # font sizes 
+  # script runs only on Leopard
+  rm -f "GIMPAPP/bin/set-fontsize"
+#  echo configuring Tiger specific files ...
+#  sed -i "" -e "s|font_name = \"10\"|font_name = \"12\"|g" "$GIMPAPP/share/gimp/2.0/themes/Leopard/gtkrc"
+#  sed -i "" -e "s|font_name = \"11\"|font_name = \"13\"|g" "$GIMPAPP/share/gimp/2.0/themes/Leopard/gtkrc"
+#  sed -i "" -e "s|font_name = \"10\"|font_name = \"12\"|g" "$GIMPAPP/share/gimp/2.0/themes/Tiger/gtkrc"
+#  sed -i "" -e "s|font_name = \"11\"|font_name = \"13\"|g" "$GIMPAPP/share/gimp/2.0/themes/Tiger/gtkrc"
+#  sed -i "" -e "s|font_name = \"10\"|font_name = \"12\"|g" "$GIMPAPP/share/gimp/2.0/themes/ProApp/gtkrc"
+#  sed -i "" -e "s|font_name = \"11\"|font_name = \"13\"|g" "$GIMPAPP/share/gimp/2.0/themes/ProApp/gtkrc"
+#  sed -i "" -e "s|font_name = \"11\"|font_name = \"13\"|g" "$GIMPAPP/share/gimp/2.0/themes/Glossy P/gtkrc"
+fi
+
+# app bundle files
+echo "*** Please do _NOT_ delete this file. The file script depends on it. ***" > "$GIMPAPP/v$VERSION"
+sed -i "" -e "s/_VERSION_/$VERSION/g" "$GIMPAPP/script" 
+sed -i "" -e "s/_VERSION_/$VERSION/g" "$GIMPAPP/openDoc" 
+sed -i "" -e "s/_VERSION_/$VERSION$PL/g" "$GIMPAPP/../Info.plist" 
+
+# save information about the ports which make up this build
+echo "GIMP $VERSION$PL for Mac OS X $OSNAME" > "$GIMPAPP/gimp-build.txt"
+echo "build by GIMP on OS X, http://gimp.lisanet.de" >> "$GIMPAPP/gimp-build.txt"
+date >> "$GIMPAPP/gimp-build.txt"
+port installed >> "$GIMPAPP/gimp-build.txt"
+sed -i "" -e "s/are currently installed:/were used to build this package:/g" "$GIMPAPP/gimp-build.txt"
+
+cd "$DIR"
+mv "Gimp-new-app" "Gimp-$VERSION.app"
+echo
+echo "Your new Gimp app bundle should now be ready to run. Enjoy."
+echo "-skl"
+echo 
+

@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+# (c) 2008, Simone Karin Lehmann, simone at lisanet dot de
+# GPL version 2 or later
+# script 1.2 Tiger
+#
+# with Tiger specific testing code from
+# Author: Aaron Voisine <aaron@voisine.org>
+# modified by: Christoph Schroeder <webmaster@wilber-loves-apple.org>
+# modified by: Steven Borley <steven.borley@diode.demon.co.uk>
+
+
+DIR=`dirname "$0"`
+TMP=/tmp/$UID/TemporaryItems
+cd "$DIR/../.."
+APPDIR=`pwd`
+cd - > /dev/null
+# edit the next line to match version file
+VERSION=_VERSION_
+LNDIR=/tmp/skl/Gimp.app
+if [ ! -e $LNDIR/Contents/Resources/v$VERSION ]; then
+	rm -f $LNDIR
+	mkdir -p /tmp/skl
+	ln -s "$APPDIR" $LNDIR
+fi
+
+BINDIR="/tmp/skl/Gimp.app/Contents/Resources/bin"
+
+# modify X11 config file by commenting out 'xterm',
+# so that we're not annoyed by a xterm window on startup
+ps -wx -ocommand | grep -e '[X]11' > /dev/null
+if [ "$?" != "0" -a ! -f ~/.xinitrc ]; then
+    echo "rm -f ~/.xinitrc" > ~/.xinitrc
+    sed 's/xterm/# xterm/' /usr/X11R6/lib/X11/xinit/xinitrc >> ~/.xinitrc
+fi
+
+# open X11
+mkdir -p $TMP
+#cp -f "$BINDIR/getdisplay.sh" $TMP
+rm -f $TMP/display
+open-x11 $BINDIR/getdisplay.sh || echo ":0" > $TMP/display
+	
+while [ "$?" == "0" -a ! -f $TMP/display ]; do sleep 1; done
+export "DISPLAY=`cat $TMP/display`"
+	
+ps -wx -ocommand | grep -e '[X]11' > /dev/null || exit 11
+
+#update fonts cache from 2.6.1 to 2.6.2
+"$BINDIR/update-fc-cache"
+# setup gimp user directories
+"$BINDIR/setup-gimpdir"
+# setup help, for more information see bin/help-locale
+rm -f /tmp/skl/Gimphelp
+ln -s "$DIR/share/gimp/2.0/nohelp" /tmp/skl/Gimphelp
+"$BINDIR/help-locale"
+
+cd ~/
+exec "$BINDIR/gimp" "$@"

@@ -1,0 +1,69 @@
+#!/bin/bash
+# Copyright (C) 2009 Simone Karin Lehmann, simone at lisanet dot de 
+# help-locale 1.2.2
+# update help-locale to use the language, hte user has set via System Preferences
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+#
+GIMPRC="$HOME/Library/Application Support/Gimp/gimprc"
+
+if [ ! -e "$GIMPRC" ]; then
+  mkdir -p "$HOME/Library/Application Support/Gimp"
+cat << EOF > "$GIMPRC"
+# GIMP gimprc
+# 
+# This is your personal gimprc file.  Any variable defined in this file takes
+# precedence over the value defined in the system-wide gimprc:
+# /tmp/skl/Gimp.app/Contents/Resources/etc/gimp/2.0/gimprc
+# Most values can be set within GIMP by changing some options in the
+# Preferences dialog.
+
+(help-locales "")
+
+# end of gimprc
+EOF
+fi
+
+# get langauges set by System Preferences
+LANGS=`defaults read -g AppleLanguages | tr -d "() \n\"" | sed "s/-/_/g;s/Hans/CN/;s/Hant/TW/;s/,/:/g"`
+
+# set help language
+grep -q help-locales "$GIMPRC" && HELP=true
+if [ "$HELP" != "true" ]; then
+  sed -i "" -e "s/# end of g.*//" "$GIMPRC"
+  echo \(help-locales \"$LANGS\"\) >> "$GIMPRC"
+  echo "# end of gimprc" >> "$GIMPRC"
+fi
+
+# update language sort order
+grep -q "$LANGS" "$GIMPRC" && LANGS=set
+if [ "$LANGS" != "set" ]; then
+  sed -i "" -e "s/help-locales \".*\"/help-locales \"$LANGS\"/" "$GIMPRC"
+fi
+
+# check if help is already installed
+INSTALLED=`eval find "$HOME/Library/Application\ Support/Gimp/help" -name "gimp-help-index.html"` 
+# make installed help file available to GIMP
+# /tmp/skl/Gimphelp is a symbolic link to GIMP's help files
+# By default GIMP looks for help in the directory Gimp.app/Contents/Resources/share/gimp/2.0/help.
+# This directory is symlinked to /tmp/skl/Gimphelp, so that we can point to any other location we want.
+# By default it points to Gimp.app/Contents/Resources/share/gimp/2.0/nohelp, showing files that say that 
+# there's no help available. If help is installed, we link this to the installed help files.
+# This has the advantage, that if Gimp.app is updated, a previously installed help wouldn't be deleted.
+if [ "$INSTALLED" != "" ]; then
+  rm /tmp/skl/Gimphelp
+  ln -s "$HOME/Library/Application Support/Gimp/help" /tmp/skl/Gimphelp
+fi
+

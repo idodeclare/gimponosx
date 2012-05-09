@@ -1,0 +1,41 @@
+#!/bin/bash
+# Copyright (C) 2009 Simone Karin Lehmann, simone at lisanet dot de 
+# setup-gimpdir 1.0
+# 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+#
+# This script is only needed, because:
+# we want gegl to use Application Support/Gimp to store it's config files
+# and gegl starts before gimp launches. 
+# Same is for the script "help-locales"
+# gimp only create these dirs on the first startup, if _no_ 
+# "Application Support/Gimp" exists. So we have to solve this by manually
+# create the dirs.
+#
+# This script swill create the dirs if they are not present. So it will fix the misbehaviour
+# (no directories at all) in previous GIMP on OS X versions
+# The script can be removed some day, if we can make sure, that all old installation
+# prior to 2.6.5 have been updated...
+#
+#
+GIMPSUPP="$HOME/Library/Application Support/Gimp"
+DIRS="brushes fonts gradients palettes patterns plug-ins modules interpreters environ scripts templates themes curves levels fractalexplorer gfig gflare gimpressionist"
+for i in $DIRS 
+do
+  if [ ! -e "$GIMPSUPP/$i" ]; then
+    mkdir -p "$GIMPSUPP/$i"
+  fi
+done
+
