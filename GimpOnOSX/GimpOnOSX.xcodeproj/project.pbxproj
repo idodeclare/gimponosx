@@ -118,21 +118,11 @@
 		4520B8ED155B5524002BF54C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4520B8EE155B5524002BF54C /* bin */,
-				4520B8F5155B5524002BF54C /* etc */,
 				4520B8F6155B5524002BF54C /* Gimp.icns */,
-				4520B8F7155B5524002BF54C /* lib */,
+				4520BAD5155B5525002BF54C /* xcf.icns */,
 				4520B8F8155B5524002BF54C /* openDoc */,
 				4520B8F9155B5524002BF54C /* quitApp */,
 				4520B8FA155B5524002BF54C /* script */,
-				4520BAD5155B5525002BF54C /* xcf.icns */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		4520B8EE155B5524002BF54C /* bin */ = {
-			isa = PBXGroup;
-			children = (
 				4520B8EF155B5524002BF54C /* gimp */,
 				4520B8F0155B5524002BF54C /* gimp-remote */,
 				4549220B155C2A6500E79696 /* gimp-dbus */,
@@ -141,21 +131,7 @@
 				4520B8F3155B5524002BF54C /* setup-gimpdir */,
 				4520B8F4155B5524002BF54C /* update-fc-cache */,
 			);
-			path = bin;
-			sourceTree = "<group>";
-		};
-		4520B8F5155B5524002BF54C /* etc */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = etc;
-			sourceTree = "<group>";
-		};
-		4520B8F7155B5524002BF54C /* lib */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = lib;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
