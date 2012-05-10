@@ -1,5 +1,10 @@
-- ghostscript?
-- gimp-help?
-- How to launch a web browser?
-- APPLGiMP PkgInfo?
-- fix-ca and greycstoration plugins?
+Q ghostscript?
+
+Q gimp-help?
+
+Q How to launch a web browser?
+A just use: open "$@"
+
+Q APPLGiMP PkgInfo?
+
+Q fix-ca and greycstoration plugins?
