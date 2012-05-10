@@ -1,0 +1,15 @@
+This project is a fork of http://sourceforge.net/projects/gimponosx/
+
+Many thanks to Simone Karin Lehmann for his Gimp on OS X project, which 
+I used for years. This fork uses just the Gimp-app-template and 
+gimp-launcher portions of his project but simplifies to build entirely
+in Xcode 4. The macports dependencies are removed.
+
+- gimp-2.8 is expected to be already on the system. "brew install gimp" 
+  is nearly ready for primetime.
+
+- the launcher scripts are updated to no longer use the /tmp/skl
+  work directory
+
+- the scripts are updated to use dbus-1.4's launchd support, so
+  a dbus-daemon is not started anymore. See: brew install d-bus
