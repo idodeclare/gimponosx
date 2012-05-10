@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		664C29F1060ECDC4006EC560 /* openDoc in Resources */ = {isa = PBXBuildFile; fileRef = 664C29F0060ECDC4006EC560 /* openDoc */; };
+		4520BAD6155B5525002BF54C /* gimp in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8EF155B5524002BF54C /* gimp */; };
+		4520BAD7155B5525002BF54C /* gimp-remote in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F0155B5524002BF54C /* gimp-remote */; };
+		4520BAD8155B5525002BF54C /* help-locale in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F1155B5524002BF54C /* help-locale */; };
+		4520BAD9155B5525002BF54C /* set-fontsize in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F2155B5524002BF54C /* set-fontsize */; };
+		4520BADA155B5525002BF54C /* setup-gimpdir in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F3155B5524002BF54C /* setup-gimpdir */; };
+		4520BADB155B5525002BF54C /* update-fc-cache in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F4155B5524002BF54C /* update-fc-cache */; };
+		4520BADC155B5525002BF54C /* Gimp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F6155B5524002BF54C /* Gimp.icns */; };
+		4520BADD155B5525002BF54C /* openDoc in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F8155B5524002BF54C /* openDoc */; };
+		4520BADE155B5525002BF54C /* quitApp in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F9155B5524002BF54C /* quitApp */; };
+		4520BADF155B5525002BF54C /* script in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8FA155B5524002BF54C /* script */; };
+		4520BCA1155B5525002BF54C /* xcf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4520BAD5155B5525002BF54C /* xcf.icns */; };
+		4549220C155C2A6500E79696 /* gimp-dbus in Resources */ = {isa = PBXBuildFile; fileRef = 4549220B155C2A6500E79696 /* gimp-dbus */; };
 		8D0C4E8B0486CD37000505A6 /* ScriptExec_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */; };
 		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
 		8D0C4E900486CD37000505A6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20286C2BFDCF999611CA2CEA /* main.c */; settings = {ATTRIBUTES = (); }; };
 		8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
 		B8DCE045056DAC3500C390B0 /* MenuBar.nib in Resources */ = {isa = PBXBuildFile; fileRef = B8DCE042056DAC3500C390B0 /* MenuBar.nib */; };
-		B8DCE049056DAC5000C390B0 /* script in Resources */ = {isa = PBXBuildFile; fileRef = B8DCE048056DAC5000C390B0 /* script */; };
 		B8DCE04F056DACAE00C390B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DCE04E056DACAE00C390B0 /* Security.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,13 +32,23 @@
 		20286C2BFDCF999611CA2CEA /* main.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptExec_Prefix.pch; sourceTree = "<group>"; };
+		4520B8EF155B5524002BF54C /* gimp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = gimp; sourceTree = "<group>"; };
+		4520B8F0155B5524002BF54C /* gimp-remote */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "gimp-remote"; sourceTree = "<group>"; };
+		4520B8F1155B5524002BF54C /* help-locale */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "help-locale"; sourceTree = "<group>"; };
+		4520B8F2155B5524002BF54C /* set-fontsize */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "set-fontsize"; sourceTree = "<group>"; };
+		4520B8F3155B5524002BF54C /* setup-gimpdir */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "setup-gimpdir"; sourceTree = "<group>"; };
+		4520B8F4155B5524002BF54C /* update-fc-cache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "update-fc-cache"; sourceTree = "<group>"; };
+		4520B8F6155B5524002BF54C /* Gimp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Gimp.icns; sourceTree = "<group>"; };
+		4520B8F8155B5524002BF54C /* openDoc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = openDoc; sourceTree = "<group>"; };
+		4520B8F9155B5524002BF54C /* quitApp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = quitApp; sourceTree = "<group>"; };
+		4520B8FA155B5524002BF54C /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = script; sourceTree = "<group>"; };
+		4520BAD5155B5525002BF54C /* xcf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = xcf.icns; sourceTree = "<group>"; };
+		4549220B155C2A6500E79696 /* gimp-dbus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "gimp-dbus"; sourceTree = "<group>"; };
 		4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
-		664C29F0060ECDC4006EC560 /* openDoc */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = openDoc; sourceTree = "<group>"; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D0C4E970486CD37000505A6 /* ScriptExec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptExec.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0C4E970486CD37000505A6 /* Gimp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gimp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DCE042056DAC3500C390B0 /* MenuBar.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = MenuBar.nib; sourceTree = "<group>"; };
-		B8DCE048056DAC5000C390B0 /* script */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.sh; path = script; sourceTree = "<group>"; };
 		B8DCE04E056DACAE00C390B0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -48,7 +68,7 @@
 		195DF8CFFE9D517E11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D0C4E970486CD37000505A6 /* ScriptExec.app */,
+				8D0C4E970486CD37000505A6 /* Gimp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,7 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				20286C2AFDCF999611CA2CEA /* Sources */,
-				20286C2CFDCF999611CA2CEA /* Resources */,
+				20286C2CFDCF999611CA2CEA /* SupportingFiles */,
+				4520B8ED155B5524002BF54C /* Resources */,
 				20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */,
 				195DF8CFFE9D517E11CA2CBB /* Products */,
 			);
@@ -73,16 +94,14 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
-		20286C2CFDCF999611CA2CEA /* Resources */ = {
+		20286C2CFDCF999611CA2CEA /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				664C29F0060ECDC4006EC560 /* openDoc */,
 				B8DCE042056DAC3500C390B0 /* MenuBar.nib */,
 				8D0C4E960486CD37000505A6 /* Info.plist */,
-				B8DCE048056DAC5000C390B0 /* script */,
 				0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */,
 			);
-			name = Resources;
+			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
 		20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */ = {
@@ -94,6 +113,49 @@
 				B8DCE04E056DACAE00C390B0 /* Security.framework */,
 			);
 			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		4520B8ED155B5524002BF54C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4520B8EE155B5524002BF54C /* bin */,
+				4520B8F5155B5524002BF54C /* etc */,
+				4520B8F6155B5524002BF54C /* Gimp.icns */,
+				4520B8F7155B5524002BF54C /* lib */,
+				4520B8F8155B5524002BF54C /* openDoc */,
+				4520B8F9155B5524002BF54C /* quitApp */,
+				4520B8FA155B5524002BF54C /* script */,
+				4520BAD5155B5525002BF54C /* xcf.icns */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4520B8EE155B5524002BF54C /* bin */ = {
+			isa = PBXGroup;
+			children = (
+				4520B8EF155B5524002BF54C /* gimp */,
+				4520B8F0155B5524002BF54C /* gimp-remote */,
+				4549220B155C2A6500E79696 /* gimp-dbus */,
+				4520B8F1155B5524002BF54C /* help-locale */,
+				4520B8F2155B5524002BF54C /* set-fontsize */,
+				4520B8F3155B5524002BF54C /* setup-gimpdir */,
+				4520B8F4155B5524002BF54C /* update-fc-cache */,
+			);
+			path = bin;
+			sourceTree = "<group>";
+		};
+		4520B8F5155B5524002BF54C /* etc */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = etc;
+			sourceTree = "<group>";
+		};
+		4520B8F7155B5524002BF54C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,9 +172,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8D0C4E890486CD37000505A6 /* ScriptExec */ = {
+		8D0C4E890486CD37000505A6 /* GimpOnOSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9538E8D70D048E900064D467 /* Build configuration list for PBXNativeTarget "ScriptExec" */;
+			buildConfigurationList = 9538E8D70D048E900064D467 /* Build configuration list for PBXNativeTarget "GimpOnOSX" */;
 			buildPhases = (
 				8D0C4E8A0486CD37000505A6 /* Headers */,
 				8D0C4E8C0486CD37000505A6 /* Resources */,
@@ -124,10 +186,10 @@
 			);
 			dependencies = (
 			);
-			name = ScriptExec;
+			name = GimpOnOSX;
 			productInstallPath = "$(HOME)/Applications";
 			productName = ScriptExec;
-			productReference = 8D0C4E970486CD37000505A6 /* ScriptExec.app */;
+			productReference = 8D0C4E970486CD37000505A6 /* Gimp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +197,7 @@
 /* Begin PBXProject section */
 		20286C28FDCF999611CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 9538E8DB0D048E900064D467 /* Build configuration list for PBXProject "ScriptExec" */;
+			buildConfigurationList = 9538E8DB0D048E900064D467 /* Build configuration list for PBXProject "GimpOnOSX" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -146,7 +208,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D0C4E890486CD37000505A6 /* ScriptExec */,
+				8D0C4E890486CD37000505A6 /* GimpOnOSX */,
 			);
 		};
 /* End PBXProject section */
@@ -158,8 +220,18 @@
 			files = (
 				8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */,
 				B8DCE045056DAC3500C390B0 /* MenuBar.nib in Resources */,
-				B8DCE049056DAC5000C390B0 /* script in Resources */,
-				664C29F1060ECDC4006EC560 /* openDoc in Resources */,
+				4520BAD6155B5525002BF54C /* gimp in Resources */,
+				4520BAD7155B5525002BF54C /* gimp-remote in Resources */,
+				4520BAD8155B5525002BF54C /* help-locale in Resources */,
+				4520BAD9155B5525002BF54C /* set-fontsize in Resources */,
+				4520BADA155B5525002BF54C /* setup-gimpdir in Resources */,
+				4520BADB155B5525002BF54C /* update-fc-cache in Resources */,
+				4520BADC155B5525002BF54C /* Gimp.icns in Resources */,
+				4520BADD155B5525002BF54C /* openDoc in Resources */,
+				4520BADE155B5525002BF54C /* quitApp in Resources */,
+				4520BADF155B5525002BF54C /* script in Resources */,
+				4520BCA1155B5525002BF54C /* xcf.icns in Resources */,
+				4549220C155C2A6500E79696 /* gimp-dbus in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,10 +291,11 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Static;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ScriptExec;
+				PRODUCT_NAME = Gimp;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -253,10 +326,11 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Static;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ScriptExec;
+				PRODUCT_NAME = Gimp;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -284,10 +358,11 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Static;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ScriptExec;
+				PRODUCT_NAME = Gimp;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -301,18 +376,21 @@
 		9538E8DC0D048E900064D467 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = macosx10.6;
 			};
 			name = Development;
 		};
 		9538E8DD0D048E900064D467 /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = macosx10.6;
 			};
 			name = Deployment;
 		};
 		9538E8DE0D048E900064D467 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = macosx10.6;
 			};
 			name = Default;
 		};
@@ -335,10 +413,11 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				LIBRARY_STYLE = Static;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = ScriptExec;
+				PRODUCT_NAME = Gimp;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -354,17 +433,16 @@
 		95517EA00E004E2B00C96B8B /* Deployment-UB */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				SDKROOT = macosx10.6;
 			};
 			name = "Deployment-UB";
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9538E8D70D048E900064D467 /* Build configuration list for PBXNativeTarget "ScriptExec" */ = {
+		9538E8D70D048E900064D467 /* Build configuration list for PBXNativeTarget "GimpOnOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9538E8D80D048E900064D467 /* Development */,
@@ -375,7 +453,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		9538E8DB0D048E900064D467 /* Build configuration list for PBXProject "ScriptExec" */ = {
+		9538E8DB0D048E900064D467 /* Build configuration list for PBXProject "GimpOnOSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9538E8DC0D048E900064D467 /* Development */,

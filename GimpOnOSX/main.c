@@ -259,7 +259,7 @@ static void GetParameters (void)
                       "\pError getting openDoc from application bundle.");
     strcpy((char *)&openDocPath, str);
     
-    if (! (str = (char *)GetQuitApp())) //get path to openDoc
+    if (! (str = (char *)GetQuitApp())) //get path to quitApp
         RedFatalAlert("\pInitialization Error",
                       "\pError getting quitApp from application bundle.");
     strcpy((char *)&quitAppPath, str);

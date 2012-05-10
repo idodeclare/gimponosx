@@ -20,10 +20,9 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 #
 GTKRC="$HOME/Library/Application Support/Gimp/gtkrc"
-DPI=`defaults read org.x.X11 dpi`
-if [ "$DPI" = "" ]; then
-  DPI=96
-fi
+
+# Default 96 since 10.5.7
+DPI=96
 FSIZE=`dc -e "1k 72 100 * $DPI / 13 * 5 + 100 / p"`
 
 if [ ! -e "$GTKRC" ]; then

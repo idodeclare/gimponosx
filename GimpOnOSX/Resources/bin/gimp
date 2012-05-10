@@ -1,14 +1,11 @@
-#!/bin/sh
+#!/bin/sh 
 
-export PATH=/tmp/skl/Gimp.app/Contents/Resources/bin:$PATH
+export PATH="${PATH}:/usr/bin:/bin:/usr/local/bin"
 export GIMP2_DIRECTORY="Library/Application Support/Gimp"
-export PYTHONPATH=/tmp/skl/Gimp.app/Contents/Resources/lib/python2.5/site-packages
 
-DBUS=`dbus-launch --sh-syntax`
-eval $DBUS
-echo $DBUS_SESSION_BUS_ADDRESS > /tmp/skl/dbus-address-$UID
+DIR=`dirname "$0"`
+source "$DIR/gimp-dbus"
+set_dbus_session_bus_address
 
-gimp-2.6 "$@"
-
-rm /tmp/skl/dbus-address-$UID
-kill $DBUS_SESSION_BUS_PID
+echo "Starting gimp..."
+gimp "$@"

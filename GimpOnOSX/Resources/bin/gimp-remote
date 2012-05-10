@@ -1,9 +1,10 @@
 #!/bin/sh
 
-export PATH=/tmp/skl/Gimp.app/Contents/Resources/bin:$PATH
+export PATH="${PATH}:/usr/bin:/bin:/usr/local/bin"
 export GIMP2_DIRECTORY="Library/Application Support/Gimp"
-export PYTHONPATH=/tmp/skl/Gimp.app/Contents/Resources/lib/python2.5/site-packages
 
-export DBUS_SESSION_BUS_ADDRESS=`cat /tmp/skl/dbus-address-$UID`
+DIR=`dirname "$0"`
+source "$DIR/gimp-dbus"
+set_dbus_session_bus_address
 
-exec gimp-2.6 "$@"
+exec gimp "$@"

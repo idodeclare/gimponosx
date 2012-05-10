@@ -52,18 +52,3 @@ grep -q "$LANGS" "$GIMPRC" && LANGS=set
 if [ "$LANGS" != "set" ]; then
   sed -i "" -e "s/help-locales \".*\"/help-locales \"$LANGS\"/" "$GIMPRC"
 fi
-
-# check if help is already installed
-INSTALLED=`eval find "$HOME/Library/Application\ Support/Gimp/help" -name "gimp-help-index.html"` 
-# make installed help file available to GIMP
-# /tmp/skl/Gimphelp is a symbolic link to GIMP's help files
-# By default GIMP looks for help in the directory Gimp.app/Contents/Resources/share/gimp/2.0/help.
-# This directory is symlinked to /tmp/skl/Gimphelp, so that we can point to any other location we want.
-# By default it points to Gimp.app/Contents/Resources/share/gimp/2.0/nohelp, showing files that say that 
-# there's no help available. If help is installed, we link this to the installed help files.
-# This has the advantage, that if Gimp.app is updated, a previously installed help wouldn't be deleted.
-if [ "$INSTALLED" != "" ]; then
-  rm /tmp/skl/Gimphelp
-  ln -s "$HOME/Library/Application Support/Gimp/help" /tmp/skl/Gimphelp
-fi
-

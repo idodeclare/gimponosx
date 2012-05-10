@@ -1,0 +1,22 @@
+#!/bin/sh 
+
+export PATH="${PATH}:/usr/bin:/bin:/usr/local/bin"
+
+set_dbus_session_bus_address () 
+{
+
+#
+# glib-dbus (now embedded in glib) does not know launchd, but dbus-1.4 does
+# (can be got through "brew install d-bus"), so query launchctl directly
+#
+DBUS_LAUNCHD_SESSION_BUS_SOCKET=`launchctl getenv DBUS_LAUNCHD_SESSION_BUS_SOCKET`
+if test $? -eq 0 -a "${DBUS_LAUNCHD_SESSION_BUS_SOCKET}" != ""
+then
+	export DBUS_SESSION_BUS_ADDRESS="unix:path=${DBUS_LAUNCHD_SESSION_BUS_SOCKET}"
+	echo "Using DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS}"
+else
+	logger -s "No DBUS_LAUNCHD_SESSION_BUS_SOCKET available." \
+	"brew 'd-bus' and install org.freedesktop.dbus-session.plist."
+fi
+
+}

@@ -4,5 +4,4 @@
 # GPL version 2 or later
 # quitApp
 
-killall gimp-2.6
-
+killall -m gimp-
