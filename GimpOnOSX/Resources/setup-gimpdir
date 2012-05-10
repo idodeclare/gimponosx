@@ -30,6 +30,9 @@
 # prior to 2.6.5 have been updated...
 #
 #
+
+DIR=`dirname "$0"`
+
 GIMPSUPP="$HOME/Library/Application Support/Gimp"
 DIRS="brushes fonts gradients palettes patterns plug-ins modules interpreters environ scripts templates themes curves levels fractalexplorer gfig gflare gimpressionist tool-presets dynamics"
 for i in $DIRS 
@@ -38,3 +41,9 @@ do
     mkdir -p "$GIMPSUPP/$i"
   fi
 done
+
+GIMPRC="$GIMPSUPP/gimprc"
+if test ! -e "$GIMPRC"
+then
+  cp "$DIR/gimprc-skel" "$GIMPRC"
+fi

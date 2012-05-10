@@ -1,0 +1,29 @@
+# GIMP gimprc
+# 
+# This is your personal gimprc file.  Any variable defined in this file takes
+# precedence over the value defined in the system-wide gimprc:
+# /usr/local/Cellar/gimp/2.8.0/etc/gimp/2.0/gimprc
+# Most values can be set within GIMP by changing some options in the
+# Preferences dialog.
+
+(help-locales "en:fr:ja:de:es:it:nl:sv:nb:da:fi:pt:zh_CN:zh_TW:ko:pl:pt_PT:ru:ar:cs:hu:tr")
+
+# configuration default for Mac OS X, by skl
+(interpolation-type lanczos)
+(default-image
+     (comment "Created with GIMP on a Mac"))
+(color-management
+    (mode display)
+    (rgb-profile "/System/Library/ColorSync/Profiles/sRGB Profile.icc")
+    (cmyk-profile "/System/Library/ColorSync/Profiles/Generic CMYK Profile.icc")
+    (display-profile-from-gdk yes)
+    (display-rendering-intent perceptual)
+    (simulation-rendering-intent perceptual)
+    (display-module "CdisplayLcms"))
+(use-help yes)
+(show-help-button yes)
+(help-browser web-browser)
+(user-manual-online yes)
+(web-browser "open %s")
+
+# end of gimprc

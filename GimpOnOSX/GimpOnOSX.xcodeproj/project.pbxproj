@@ -19,6 +19,7 @@
 		4520BADF155B5525002BF54C /* script in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8FA155B5524002BF54C /* script */; };
 		4520BCA1155B5525002BF54C /* xcf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4520BAD5155B5525002BF54C /* xcf.icns */; };
 		4549220C155C2A6500E79696 /* gimp-dbus in Resources */ = {isa = PBXBuildFile; fileRef = 4549220B155C2A6500E79696 /* gimp-dbus */; };
+		45A0F6FD155C59770030EFB3 /* gimprc-skel in Resources */ = {isa = PBXBuildFile; fileRef = 45A0F6FC155C59770030EFB3 /* gimprc-skel */; };
 		8D0C4E8B0486CD37000505A6 /* ScriptExec_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */; };
 		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
 		8D0C4E900486CD37000505A6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20286C2BFDCF999611CA2CEA /* main.c */; settings = {ATTRIBUTES = (); }; };
@@ -44,6 +45,7 @@
 		4520B8FA155B5524002BF54C /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = script; sourceTree = "<group>"; };
 		4520BAD5155B5525002BF54C /* xcf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = xcf.icns; sourceTree = "<group>"; };
 		4549220B155C2A6500E79696 /* gimp-dbus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "gimp-dbus"; sourceTree = "<group>"; };
+		45A0F6FC155C59770030EFB3 /* gimprc-skel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gimprc-skel"; sourceTree = "<group>"; };
 		4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				4520B8EF155B5524002BF54C /* gimp */,
 				4520B8F0155B5524002BF54C /* gimp-remote */,
 				4549220B155C2A6500E79696 /* gimp-dbus */,
+				45A0F6FC155C59770030EFB3 /* gimprc-skel */,
 				4520B8F1155B5524002BF54C /* help-locale */,
 				4520B8F2155B5524002BF54C /* set-fontsize */,
 				4520B8F3155B5524002BF54C /* setup-gimpdir */,
@@ -208,6 +211,7 @@
 				4520BADF155B5525002BF54C /* script in Resources */,
 				4520BCA1155B5525002BF54C /* xcf.icns in Resources */,
 				4549220C155C2A6500E79696 /* gimp-dbus in Resources */,
+				45A0F6FD155C59770030EFB3 /* gimprc-skel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
