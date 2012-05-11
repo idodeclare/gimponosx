@@ -7,4 +7,4 @@ DIR=`dirname "$0"`
 source "$DIR/gimp-dbus"
 set_dbus_session_bus_address
 
-exec gimp "$@"
+exec gimp-2.8 "$@"

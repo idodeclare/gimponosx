@@ -912,7 +912,7 @@
 	<key>CFBundleExecutable</key>
 	<string>Gimp</string>
 	<key>CFBundleGetInfoString</key>
-	<string>_VERSION_, © 2001-2012 The GIMP Team</string>
+	<string>2.8, © 2001-2012 The GIMP Team</string>
 	<key>CFBundleIconFile</key>
 	<string>Gimp.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -924,11 +924,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>_VERSION_</string>
+	<string>2.8</string>
 	<key>CFBundleSignature</key>
 	<string>GiMP</string>
 	<key>CFBundleVersion</key>
-	<string>_VERSION_</string>
+	<string>2.8</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2001-2012 The GIMP Team</string>
 	<key>UTExportedTypeDeclarations</key>

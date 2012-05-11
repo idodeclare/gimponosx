@@ -65,6 +65,11 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
     [self activateX11];
 }
 
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
+{
+    return NO;
+}
+
 - (void)applicationWillTerminate:(NSNotification *)notification
 {
     if (_terminationTimer)
