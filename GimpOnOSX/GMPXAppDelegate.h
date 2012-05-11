@@ -14,6 +14,8 @@
     NSMutableArray *_remoteTasks;
     NSAppleScript *_activateX11; 
     NSTimer *_terminationTimer;
+    // set to YES when app is up and running successfully
+    BOOL _shouldActivateX11;
 }
 
 @property (assign) IBOutlet NSWindow *window;

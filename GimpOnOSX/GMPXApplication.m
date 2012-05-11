@@ -16,7 +16,7 @@
     switch ([theEvent type]) {            
         case NSApplicationDefined:
             if ([theEvent data1] == kShouldStopEvent)
-                [self stop:theEvent];
+                [self terminate:theEvent];
             break;
     }
 

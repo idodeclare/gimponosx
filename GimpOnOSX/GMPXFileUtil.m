@@ -33,15 +33,8 @@
 	if (foundPath) 
 		return foundPath;
 	
-	NSString *envPATH = [[[NSProcessInfo processInfo] environment] objectForKey:@"PATH"];
-	if (envPATH) {
-		NSArray *searchPaths = [envPATH componentsSeparatedByString:@":"];
-		foundPath = [self findExecutableWithName:executable atPaths:searchPaths];
-		if (foundPath) 
-			return foundPath;
-	}
-	
-	return nil;
+	foundPath = [self findExecutableWithNameInDefaultPath:executable];	
+	return foundPath;
 }
 
 + (NSString *)findExecutableWithName:(NSString *)executable atPaths:(NSArray *)paths 
@@ -53,6 +46,18 @@
 		}
 	}
 	return nil;
+}
+
++ (NSString *)findExecutableWithNameInDefaultPath:(NSString *)executable
+{
+	NSString *envPATH = [[[NSProcessInfo processInfo] environment] objectForKey:@"PATH"];
+	if (envPATH) {
+		NSArray *searchPaths = [envPATH componentsSeparatedByString:@":"];
+		NSString *foundPath = [self findExecutableWithName:executable atPaths:searchPaths];
+		if (foundPath) 
+			return foundPath;
+	}
+    return nil;
 }
 
 @end

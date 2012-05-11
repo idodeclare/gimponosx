@@ -12,5 +12,6 @@
 
 + (NSString *)findExecutableWithName:(NSString *)executable;
 + (NSString *)findExecutableWithName:(NSString *)executable atPaths:(NSArray *)paths;
++ (NSString *)findExecutableWithNameInDefaultPath:(NSString *)executable;
 
 @end

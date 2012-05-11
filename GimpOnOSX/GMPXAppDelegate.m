@@ -10,6 +10,9 @@
 #import "GMPXFileUtil.h"
 #import "GMPXConstants.h"
 
+// Same as script, gimp-remote
+static NSString * const kGimpBinary = @"gimp-2.8";
+
 static NSString * const kGimpTaskScript = @"script";
 static NSString * const kGimpOpenDocScript = @"openDoc";
 static NSString * const kGimpQuitAppScript = @"quitApp";
@@ -56,13 +59,27 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    if ([GMPXFileUtil findExecutableWithNameInDefaultPath:kGimpBinary] == nil) 
+    {
+        NSString *msg = [NSString stringWithFormat:@"%@ was not found.", kGimpBinary];
+        NSAlert *noGimp = [NSAlert alertWithMessageText:msg defaultButton:nil 
+                                        alternateButton:nil otherButton:nil 
+                              informativeTextWithFormat:@"Brew gimp and try again."];
+        [noGimp runModal];
+        [[NSApplication sharedApplication] terminate:self];
+        return;
+    }
+
+    _shouldActivateX11 = YES;
+
     if (!_remoteTasks)
         [self startGimpRemoteTask:[NSArray array]];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
-    [self activateX11];
+    if (_shouldActivateX11)
+        [self activateX11];
 }
 
 - (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
