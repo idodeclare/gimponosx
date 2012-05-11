@@ -74,7 +74,6 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 {
     if (_terminationTimer)
         [_terminationTimer invalidate];
-    NSLog(@"will terminate");
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -112,7 +111,6 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
 - (void)cancelDelayedTermination:(NSTimer*)theTimer
 {
-    NSLog(@"canceling termination");
     [[NSApplication sharedApplication] replyToApplicationShouldTerminate:NO];
     [_terminationTimer release];
     _terminationTimer = nil;
@@ -160,10 +158,8 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
     // NSApplication event, as it is
     if (!_tasksLock)
         _tasksLock = [[NSLock alloc] init];
-    if (!_remoteTasks) {
-        NSLog(@"Starting gimp task");
+    if (!_remoteTasks) 
         _remoteTasks = [[NSMutableArray alloc] init];
-    }
     [_tasksLock lock];
     [_remoteTasks addObject:ntask];
     [_tasksLock unlock];
