@@ -108,6 +108,8 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 {
     NSLog(@"canceling termination");
     [[NSApplication sharedApplication] replyToApplicationShouldTerminate:NO];
+    [_terminationTimer release];
+    _terminationTimer = nil;
 }
      
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
