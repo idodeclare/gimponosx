@@ -15,9 +15,10 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
 
 @interface GMPXAppDelegate ()
 
-- (void)startGimpTask;
-- (void)handleGimpTaskFinished:(NSNotification *)notification;
 - (void)activateX11;
+
+- (void)startGimpRemoteTask:(NSArray *)arguments;
+- (void)handleGimpRemoteTaskFinished:(NSNotification *)notification;
 
 - (NSString *)getPathToScript:(NSString *)scriptName;
 
@@ -30,14 +31,16 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
 - (void)dealloc
 {
     [_window release];
-    [_gimpTask release];
-    [_gimpPeerTask release];
+    [_remoteTasks release];
+    [_tasksLock release];
+    [_activateX11 release];
     [super dealloc];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [self startGimpTask];
+    if (!_remoteTasks)
+        [self startGimpRemoteTask:[NSArray array]];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
@@ -48,32 +51,21 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-#warning TODO handle reopen
     return NO;
 }
 
-- (void)startGimpTask
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
-    if (_gimpTask)
-        return;
-
-    _gimpTask = [[NSTask alloc] init];
-    [_gimpTask setLaunchPath:[self getPathToScript:kGimpTaskScript]];
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(handleGimpTaskFinished:)
-                                                 name:NSTaskDidTerminateNotification 
-                                               object:_gimpTask];
-    [_gimpTask launch];
+    [self startGimpRemoteTask:[NSArray arrayWithObject:filename]];
+    // we successfully made our best effort to send to gimp :)
+    return YES;
 }
 
-- (void)handleGimpTaskFinished:(NSNotification *)notification
+- (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
-    [_gimpTask release];
-    _gimpTask = nil;
-
-    NSEvent *shouldStop = [NSEvent otherEventWithType:NSApplicationDefined location:NSPointFromCGPoint(CGPointZero) modifierFlags:0 timestamp:0 windowNumber:0 context:nil subtype:0 
-                                                data1:kShouldStopEvent data2:0];
-    [[NSApplication sharedApplication] postEvent:shouldStop atStart:NO];
+    [self startGimpRemoteTask:filenames];
+    // we successfully made our best effort to send to gimp :)
+    [[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
 
 - (void)activateX11
@@ -82,6 +74,43 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
         _activateX11 = [[NSAppleScript alloc] initWithSource:kActivateX11ScriptCode];
     }
     [_activateX11 executeAndReturnError:nil];
+}
+
+- (void)startGimpRemoteTask:(NSArray *)arguments
+{
+    NSTask *ntask = [[[NSTask alloc] init] autorelease];
+    [ntask setLaunchPath:[self getPathToScript:kGimpOpenDocScript]];
+    [ntask setArguments:arguments];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(handleGimpRemoteTaskFinished:)
+                                                 name:NSTaskDidTerminateNotification 
+                                               object:ntask];
+    // this method is thread safe on the first call if called from a 
+    // NSApplication event, as it is
+    if (!_tasksLock)
+        _tasksLock = [[NSLock alloc] init];
+    if (!_remoteTasks)
+        _remoteTasks = [[NSMutableArray alloc] init];
+    [_tasksLock lock];
+    [_remoteTasks addObject:ntask];
+    [_tasksLock unlock];
+
+    [ntask launch];
+}
+
+- (void)handleGimpRemoteTaskFinished:(NSNotification *)notification
+{
+    id ntask = [notification object];
+    [_tasksLock lock];
+    [_remoteTasks removeObject:ntask];
+
+    if ([_remoteTasks count] < 1) {
+        NSEvent *shouldStop = [NSEvent otherEventWithType:NSApplicationDefined location:NSPointFromCGPoint(CGPointZero) modifierFlags:0 timestamp:0 windowNumber:0 context:nil subtype:0 
+                                                    data1:kShouldStopEvent data2:0];
+        [[NSApplication sharedApplication] postEvent:shouldStop atStart:NO];
+    }
+
+    [_tasksLock unlock];    
 }
 
 - (NSString *)getPathToScript:(NSString *)scriptName

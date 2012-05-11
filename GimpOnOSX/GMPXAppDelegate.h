@@ -10,8 +10,8 @@
 
 @interface GMPXAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *_window;
-    NSTask *_gimpTask;
-    NSTask *_gimpPeerTask;
+    NSLock *_tasksLock;
+    NSMutableArray *_remoteTasks;
     NSAppleScript *_activateX11; 
 }
 

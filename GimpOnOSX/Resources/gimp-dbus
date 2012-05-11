@@ -13,7 +13,6 @@ DBUS_LAUNCHD_SESSION_BUS_SOCKET=`launchctl getenv DBUS_LAUNCHD_SESSION_BUS_SOCKE
 if test $? -eq 0 -a "${DBUS_LAUNCHD_SESSION_BUS_SOCKET}" != ""
 then
 	export DBUS_SESSION_BUS_ADDRESS="unix:path=${DBUS_LAUNCHD_SESSION_BUS_SOCKET}"
-	echo "Using DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS}"
 else
 	logger -s "No DBUS_LAUNCHD_SESSION_BUS_SOCKET available." \
 	"brew 'd-bus' and install org.freedesktop.dbus-session.plist."

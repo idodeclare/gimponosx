@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4520BAD6155B5525002BF54C /* gimp in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8EF155B5524002BF54C /* gimp */; };
 		4520BAD7155B5525002BF54C /* gimp-remote in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F0155B5524002BF54C /* gimp-remote */; };
 		4520BAD8155B5525002BF54C /* help-locale in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F1155B5524002BF54C /* help-locale */; };
 		4520BAD9155B5525002BF54C /* set-fontsize in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F2155B5524002BF54C /* set-fontsize */; };
@@ -32,10 +31,7 @@
 		45A0F79A155C81EB0030EFB3 /* GMPXApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F798155C81EB0030EFB3 /* GMPXApplication.m */; };
 		45A0F79E155C91E90030EFB3 /* GMPXConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F79C155C91E80030EFB3 /* GMPXConstants.h */; };
 		45A0F79F155C91E90030EFB3 /* GMPXConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F79D155C91E90030EFB3 /* GMPXConstants.m */; };
-		8D0C4E8B0486CD37000505A6 /* ScriptExec_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */; };
 		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
-		8D0C4E900486CD37000505A6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20286C2BFDCF999611CA2CEA /* main.c */; settings = {ATTRIBUTES = (); }; };
-		8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20286C33FDCF999611CA2CEA /* Carbon.framework */; };
 		B8DCE045056DAC3500C390B0 /* MenuBar.nib in Resources */ = {isa = PBXBuildFile; fileRef = B8DCE042056DAC3500C390B0 /* MenuBar.nib */; };
 		B8DCE04F056DACAE00C390B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DCE04E056DACAE00C390B0 /* Security.framework */; };
 /* End PBXBuildFile section */
@@ -44,8 +40,6 @@
 		0867D6ABFE840B52C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		20286C2BFDCF999611CA2CEA /* main.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptExec_Prefix.pch; sourceTree = "<group>"; };
-		4520B8EF155B5524002BF54C /* gimp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = gimp; sourceTree = "<group>"; };
 		4520B8F0155B5524002BF54C /* gimp-remote */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "gimp-remote"; sourceTree = "<group>"; };
 		4520B8F1155B5524002BF54C /* help-locale */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "help-locale"; sourceTree = "<group>"; };
 		4520B8F2155B5524002BF54C /* set-fontsize */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "set-fontsize"; sourceTree = "<group>"; };
@@ -84,7 +78,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45A0F76A155C66530030EFB3 /* Cocoa.framework in Frameworks */,
-				8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */,
 				B8DCE04F056DACAE00C390B0 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,7 +116,6 @@
 				45A0F798155C81EB0030EFB3 /* GMPXApplication.m */,
 				45A0F758155C659B0030EFB3 /* GMPXAppDelegate.h */,
 				45A0F759155C659B0030EFB3 /* GMPXAppDelegate.m */,
-				32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */,
 				20286C2BFDCF999611CA2CEA /* main.c */,
 			);
 			name = Sources;
@@ -160,7 +152,6 @@
 				4520B8F8155B5524002BF54C /* openDoc */,
 				4520B8F9155B5524002BF54C /* quitApp */,
 				4520B8FA155B5524002BF54C /* script */,
-				4520B8EF155B5524002BF54C /* gimp */,
 				4520B8F0155B5524002BF54C /* gimp-remote */,
 				4549220B155C2A6500E79696 /* gimp-dbus */,
 				45A0F6FC155C59770030EFB3 /* gimprc-skel */,
@@ -189,7 +180,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D0C4E8B0486CD37000505A6 /* ScriptExec_Prefix.pch in Headers */,
 				45A0F75A155C659B0030EFB3 /* Gimp-Prefix.pch in Headers */,
 				45A0F75B155C659B0030EFB3 /* GMPXAppDelegate.h in Headers */,
 				45A0F799155C81EB0030EFB3 /* GMPXApplication.h in Headers */,
@@ -248,7 +238,6 @@
 			files = (
 				8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */,
 				B8DCE045056DAC3500C390B0 /* MenuBar.nib in Resources */,
-				4520BAD6155B5525002BF54C /* gimp in Resources */,
 				4520BAD7155B5525002BF54C /* gimp-remote in Resources */,
 				4520BAD8155B5525002BF54C /* help-locale in Resources */,
 				4520BAD9155B5525002BF54C /* set-fontsize in Resources */,
@@ -284,7 +273,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D0C4E900486CD37000505A6 /* main.c in Sources */,
 				45A0F75C155C659B0030EFB3 /* GMPXAppDelegate.m in Sources */,
 				45A0F75E155C65B40030EFB3 /* main.m in Sources */,
 				45A0F79A155C81EB0030EFB3 /* GMPXApplication.m in Sources */,
@@ -342,7 +330,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ScriptExec_Prefix.pch;
+				GCC_PREFIX_HEADER = "Gimp-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -377,7 +365,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ScriptExec_Prefix.pch;
+				GCC_PREFIX_HEADER = "Gimp-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -409,7 +397,7 @@
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ScriptExec_Prefix.pch;
+				GCC_PREFIX_HEADER = "Gimp-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
@@ -464,7 +452,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = ScriptExec_Prefix.pch;
+				GCC_PREFIX_HEADER = "Gimp-Prefix.pch";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;

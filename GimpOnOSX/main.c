@@ -141,7 +141,7 @@ extern void InitCursor();
 ///////////////////////////////////////
 // Program entrance point
 ///////////////////////////////////////
-int main(int argc, char* argv[])
+int main0(int argc, char* argv[])
 {
     OSErr err = noErr;
     EventTypeSpec events = { kEventClassRedFatalAlert, kEventKindX11Failed };
