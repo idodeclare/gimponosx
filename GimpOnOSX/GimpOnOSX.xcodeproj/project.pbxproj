@@ -20,6 +20,18 @@
 		4520BCA1155B5525002BF54C /* xcf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4520BAD5155B5525002BF54C /* xcf.icns */; };
 		4549220C155C2A6500E79696 /* gimp-dbus in Resources */ = {isa = PBXBuildFile; fileRef = 4549220B155C2A6500E79696 /* gimp-dbus */; };
 		45A0F6FD155C59770030EFB3 /* gimprc-skel in Resources */ = {isa = PBXBuildFile; fileRef = 45A0F6FC155C59770030EFB3 /* gimprc-skel */; };
+		45A0F75A155C659B0030EFB3 /* Gimp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F757155C659B0030EFB3 /* Gimp-Prefix.pch */; };
+		45A0F75B155C659B0030EFB3 /* GMPXAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F758155C659B0030EFB3 /* GMPXAppDelegate.h */; };
+		45A0F75C155C659B0030EFB3 /* GMPXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F759155C659B0030EFB3 /* GMPXAppDelegate.m */; };
+		45A0F75E155C65B40030EFB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F75D155C65B40030EFB3 /* main.m */; };
+		45A0F766155C65CC0030EFB3 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 45A0F760155C65CC0030EFB3 /* Credits.rtf */; };
+		45A0F767155C65CC0030EFB3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45A0F762155C65CC0030EFB3 /* InfoPlist.strings */; };
+		45A0F768155C65CC0030EFB3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45A0F764155C65CC0030EFB3 /* MainMenu.xib */; };
+		45A0F76A155C66530030EFB3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45A0F769155C66530030EFB3 /* Cocoa.framework */; };
+		45A0F799155C81EB0030EFB3 /* GMPXApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F797155C81EB0030EFB3 /* GMPXApplication.h */; };
+		45A0F79A155C81EB0030EFB3 /* GMPXApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F798155C81EB0030EFB3 /* GMPXApplication.m */; };
+		45A0F79E155C91E90030EFB3 /* GMPXConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F79C155C91E80030EFB3 /* GMPXConstants.h */; };
+		45A0F79F155C91E90030EFB3 /* GMPXConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F79D155C91E90030EFB3 /* GMPXConstants.m */; };
 		8D0C4E8B0486CD37000505A6 /* ScriptExec_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */; };
 		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
 		8D0C4E900486CD37000505A6 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 20286C2BFDCF999611CA2CEA /* main.c */; settings = {ATTRIBUTES = (); }; };
@@ -46,6 +58,18 @@
 		4520BAD5155B5525002BF54C /* xcf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = xcf.icns; sourceTree = "<group>"; };
 		4549220B155C2A6500E79696 /* gimp-dbus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "gimp-dbus"; sourceTree = "<group>"; };
 		45A0F6FC155C59770030EFB3 /* gimprc-skel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gimprc-skel"; sourceTree = "<group>"; };
+		45A0F757155C659B0030EFB3 /* Gimp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Gimp-Prefix.pch"; sourceTree = "<group>"; };
+		45A0F758155C659B0030EFB3 /* GMPXAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPXAppDelegate.h; sourceTree = "<group>"; };
+		45A0F759155C659B0030EFB3 /* GMPXAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXAppDelegate.m; sourceTree = "<group>"; };
+		45A0F75D155C65B40030EFB3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		45A0F761155C65CC0030EFB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Credits.rtf; sourceTree = "<group>"; };
+		45A0F763155C65CC0030EFB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		45A0F765155C65CC0030EFB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = MainMenu.xib; sourceTree = "<group>"; };
+		45A0F769155C66530030EFB3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		45A0F797155C81EB0030EFB3 /* GMPXApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPXApplication.h; sourceTree = "<group>"; };
+		45A0F798155C81EB0030EFB3 /* GMPXApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXApplication.m; sourceTree = "<group>"; };
+		45A0F79C155C91E80030EFB3 /* GMPXConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPXConstants.h; sourceTree = "<group>"; };
+		45A0F79D155C91E90030EFB3 /* GMPXConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXConstants.m; sourceTree = "<group>"; };
 		4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A0F76A155C66530030EFB3 /* Cocoa.framework in Frameworks */,
 				8D0C4E920486CD37000505A6 /* Carbon.framework in Frameworks */,
 				B8DCE04F056DACAE00C390B0 /* Security.framework in Frameworks */,
 			);
@@ -90,6 +115,14 @@
 		20286C2AFDCF999611CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				45A0F75D155C65B40030EFB3 /* main.m */,
+				45A0F757155C659B0030EFB3 /* Gimp-Prefix.pch */,
+				45A0F79C155C91E80030EFB3 /* GMPXConstants.h */,
+				45A0F79D155C91E90030EFB3 /* GMPXConstants.m */,
+				45A0F797155C81EB0030EFB3 /* GMPXApplication.h */,
+				45A0F798155C81EB0030EFB3 /* GMPXApplication.m */,
+				45A0F758155C659B0030EFB3 /* GMPXAppDelegate.h */,
+				45A0F759155C659B0030EFB3 /* GMPXAppDelegate.m */,
 				32DBCF6D0370B57F00C91783 /* ScriptExec_Prefix.pch */,
 				20286C2BFDCF999611CA2CEA /* main.c */,
 			);
@@ -109,6 +142,7 @@
 		20286C32FDCF999611CA2CEA /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				45A0F769155C66530030EFB3 /* Cocoa.framework */,
 				20286C33FDCF999611CA2CEA /* Carbon.framework */,
 				4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */,
 				4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */,
@@ -120,6 +154,7 @@
 		4520B8ED155B5524002BF54C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45A0F75F155C65CB0030EFB3 /* en.lproj */,
 				4520B8F6155B5524002BF54C /* Gimp.icns */,
 				4520BAD5155B5525002BF54C /* xcf.icns */,
 				4520B8F8155B5524002BF54C /* openDoc */,
@@ -137,6 +172,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		45A0F75F155C65CB0030EFB3 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				45A0F760155C65CC0030EFB3 /* Credits.rtf */,
+				45A0F762155C65CC0030EFB3 /* InfoPlist.strings */,
+				45A0F764155C65CC0030EFB3 /* MainMenu.xib */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -145,6 +190,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D0C4E8B0486CD37000505A6 /* ScriptExec_Prefix.pch in Headers */,
+				45A0F75A155C659B0030EFB3 /* Gimp-Prefix.pch in Headers */,
+				45A0F75B155C659B0030EFB3 /* GMPXAppDelegate.h in Headers */,
+				45A0F799155C81EB0030EFB3 /* GMPXApplication.h in Headers */,
+				45A0F79E155C91E90030EFB3 /* GMPXConstants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +261,9 @@
 				4520BCA1155B5525002BF54C /* xcf.icns in Resources */,
 				4549220C155C2A6500E79696 /* gimp-dbus in Resources */,
 				45A0F6FD155C59770030EFB3 /* gimprc-skel in Resources */,
+				45A0F766155C65CC0030EFB3 /* Credits.rtf in Resources */,
+				45A0F767155C65CC0030EFB3 /* InfoPlist.strings in Resources */,
+				45A0F768155C65CC0030EFB3 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +285,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D0C4E900486CD37000505A6 /* main.c in Sources */,
+				45A0F75C155C659B0030EFB3 /* GMPXAppDelegate.m in Sources */,
+				45A0F75E155C65B40030EFB3 /* main.m in Sources */,
+				45A0F79A155C81EB0030EFB3 /* GMPXApplication.m in Sources */,
+				45A0F79F155C91E90030EFB3 /* GMPXConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +301,30 @@
 				0867D6ABFE840B52C02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		45A0F760155C65CC0030EFB3 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45A0F761155C65CC0030EFB3 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		45A0F762155C65CC0030EFB3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45A0F763155C65CC0030EFB3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		45A0F764155C65CC0030EFB3 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45A0F765155C65CC0030EFB3 /* en */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -398,7 +478,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_REZFLAGS = "";
 				PRODUCT_NAME = Gimp;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",

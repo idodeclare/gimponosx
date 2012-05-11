@@ -8,4 +8,4 @@ source "$DIR/gimp-dbus"
 set_dbus_session_bus_address
 
 echo "Starting gimp..."
-gimp "$@"
+exec gimp "$@"
