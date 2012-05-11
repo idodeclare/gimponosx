@@ -96,10 +96,11 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
     // set a timer that, if active after a number of seconds, will indicate
     // that the termination should NOT happen
-    _terminationTimer = [[NSTimer scheduledTimerWithTimeInterval:kTerminateDelaySeconds 
-                                                         target:self 
-                                                        selector:@selector(cancelDelayedTermination:)
-                                                        userInfo:nil repeats:NO] retain];
+    _terminationTimer = [[NSTimer timerWithTimeInterval:kTerminateDelaySeconds 
+                                                 target:self 
+                                               selector:@selector(cancelDelayedTermination:)
+                                               userInfo:nil repeats:NO] retain];
+    [[NSRunLoop currentRunLoop] addTimer:_terminationTimer forMode:NSModalPanelRunLoopMode];
     return NSTerminateLater;
 }
 
@@ -173,6 +174,8 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
         if (_terminationTimer) {
             // proceed with delayed termination
             [_terminationTimer invalidate];
+            [_terminationTimer release];
+            _terminationTimer = nil;
             [[NSApplication sharedApplication] replyToApplicationShouldTerminate:YES];
         }
 
