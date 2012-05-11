@@ -7,18 +7,28 @@
 //
 
 #import "GMPXAppDelegate.h"
+#import "GMPXFileUtil.h"
 #import "GMPXConstants.h"
 
 static NSString * const kGimpTaskScript = @"script";
 static NSString * const kGimpOpenDocScript = @"openDoc";
 static NSString * const kGimpQuitAppScript = @"quitApp";
 
+static NSString * const kWmctrlProgramName = @"wmctrl";
+static NSString * const kGimpWindowName1 = @"GNU Image Manipulation Program";
+static NSString * const kGimpWindowName2 = @"gimp";
+static const NSTimeInterval kTerminateDelaySeconds = 6;
+
 @interface GMPXAppDelegate ()
+
+- (void)cancelDelayedTermination:(NSTimer*)theTimer;
 
 - (void)activateX11;
 
 - (void)startGimpRemoteTask:(NSArray *)arguments;
 - (void)handleGimpRemoteTaskFinished:(NSNotification *)notification;
+
+- (void)wmCloseGimp;
 
 - (NSString *)getPathToScript:(NSString *)scriptName;
 
@@ -31,9 +41,10 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
 - (void)dealloc
 {
     [_window release];
-    [_remoteTasks release];
     [_tasksLock release];
+    [_remoteTasks release];
     [_activateX11 release];
+    [_terminationTimer release];
     [super dealloc];
 }
 
@@ -48,6 +59,45 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
     [self activateX11];
 }
 
+- (void)applicationWillTerminate:(NSNotification *)notification
+{
+    if (_terminationTimer)
+        [_terminationTimer invalidate];
+}
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+    //
+    // If there are active tasks:
+    // 1) ask the tasks to terminate
+    // 2) schedule a timer to for further handling
+    // 3) tell the NSApplication to NSTerminateLater
+    //
+    NSArray *tasksToTerm = nil;
+    if (_remoteTasks) {
+        [_tasksLock lock];
+        tasksToTerm = [NSArray arrayWithArray:_remoteTasks];
+        [_tasksLock unlock];
+    }
+
+    // Run wmctlr -c for graceful gimp shutdown
+    [self wmCloseGimp];
+
+    // set a timer that, if active after a number of seconds, will indicate
+    // that the termination should NOT happen
+    _terminationTimer = [[NSTimer scheduledTimerWithTimeInterval:kTerminateDelaySeconds 
+                                                         target:self 
+                                                        selector:@selector(cancelDelayedTermination:)
+                                                        userInfo:nil repeats:NO] retain];
+    return NSTerminateLater;
+}
+
+- (void)cancelDelayedTermination:(NSTimer*)theTimer
+{
+    NSLog(@"canceling termination");
+    [[NSApplication sharedApplication] replyToApplicationShouldTerminate:NO];
+}
+     
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
@@ -104,13 +154,37 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
     [_tasksLock lock];
     [_remoteTasks removeObject:ntask];
 
-    if ([_remoteTasks count] < 1) {
+    if ([_remoteTasks count] < 1) 
+    {
+        if (_terminationTimer) {
+            // proceed with delayed termination
+            [_terminationTimer invalidate];
+            [[NSApplication sharedApplication] replyToApplicationShouldTerminate:YES];
+        }
+
         NSEvent *shouldStop = [NSEvent otherEventWithType:NSApplicationDefined location:NSPointFromCGPoint(CGPointZero) modifierFlags:0 timestamp:0 windowNumber:0 context:nil subtype:0 
                                                     data1:kShouldStopEvent data2:0];
         [[NSApplication sharedApplication] postEvent:shouldStop atStart:NO];
     }
 
     [_tasksLock unlock];    
+}
+
+- (void)wmCloseGimp
+{
+    // call wmctrl if the binary can be found. Otherwise, no graceful shutdown
+    // can happen, and Gimp.app will cancel termination
+    //
+    NSString *wmctrlFullPath = [GMPXFileUtil findExecutableWithName:kWmctrlProgramName];
+    if (!wmctrlFullPath) {
+        NSLog(@"gimp cannot be shutdown gracefully: %@ is not found", kWmctrlProgramName);
+        return;
+    }
+
+    [NSTask launchedTaskWithLaunchPath:wmctrlFullPath 
+                             arguments:[NSArray arrayWithObjects:@"-c", kGimpWindowName1, nil]];
+    [NSTask launchedTaskWithLaunchPath:wmctrlFullPath 
+                             arguments:[NSArray arrayWithObjects:@"-c", kGimpWindowName2, nil]];
 }
 
 - (NSString *)getPathToScript:(NSString *)scriptName

@@ -31,6 +31,8 @@
 		45A0F79A155C81EB0030EFB3 /* GMPXApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F798155C81EB0030EFB3 /* GMPXApplication.m */; };
 		45A0F79E155C91E90030EFB3 /* GMPXConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F79C155C91E80030EFB3 /* GMPXConstants.h */; };
 		45A0F79F155C91E90030EFB3 /* GMPXConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F79D155C91E90030EFB3 /* GMPXConstants.m */; };
+		45A156CA155D85B100A7975D /* GMPXFileUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A156C8155D85B100A7975D /* GMPXFileUtil.h */; };
+		45A156CB155D85B100A7975D /* GMPXFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A156C9155D85B100A7975D /* GMPXFileUtil.m */; };
 		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
 		B8DCE045056DAC3500C390B0 /* MenuBar.nib in Resources */ = {isa = PBXBuildFile; fileRef = B8DCE042056DAC3500C390B0 /* MenuBar.nib */; };
 		B8DCE04F056DACAE00C390B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DCE04E056DACAE00C390B0 /* Security.framework */; };
@@ -64,6 +66,8 @@
 		45A0F798155C81EB0030EFB3 /* GMPXApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXApplication.m; sourceTree = "<group>"; };
 		45A0F79C155C91E80030EFB3 /* GMPXConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPXConstants.h; sourceTree = "<group>"; };
 		45A0F79D155C91E90030EFB3 /* GMPXConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXConstants.m; sourceTree = "<group>"; };
+		45A156C8155D85B100A7975D /* GMPXFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPXFileUtil.h; sourceTree = "<group>"; };
+		45A156C9155D85B100A7975D /* GMPXFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXFileUtil.m; sourceTree = "<group>"; };
 		4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 				45A0F798155C81EB0030EFB3 /* GMPXApplication.m */,
 				45A0F758155C659B0030EFB3 /* GMPXAppDelegate.h */,
 				45A0F759155C659B0030EFB3 /* GMPXAppDelegate.m */,
+				45A156C8155D85B100A7975D /* GMPXFileUtil.h */,
+				45A156C9155D85B100A7975D /* GMPXFileUtil.m */,
 				20286C2BFDCF999611CA2CEA /* main.c */,
 			);
 			name = Sources;
@@ -184,6 +190,7 @@
 				45A0F75B155C659B0030EFB3 /* GMPXAppDelegate.h in Headers */,
 				45A0F799155C81EB0030EFB3 /* GMPXApplication.h in Headers */,
 				45A0F79E155C91E90030EFB3 /* GMPXConstants.h in Headers */,
+				45A156CA155D85B100A7975D /* GMPXFileUtil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +284,7 @@
 				45A0F75E155C65B40030EFB3 /* main.m in Sources */,
 				45A0F79A155C81EB0030EFB3 /* GMPXApplication.m in Sources */,
 				45A0F79F155C91E90030EFB3 /* GMPXConstants.m in Sources */,
+				45A156CB155D85B100A7975D /* GMPXFileUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

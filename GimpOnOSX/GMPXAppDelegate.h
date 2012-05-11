@@ -13,6 +13,7 @@
     NSLock *_tasksLock;
     NSMutableArray *_remoteTasks;
     NSAppleScript *_activateX11; 
+    NSTimer *_terminationTimer;
 }
 
 @property (assign) IBOutlet NSWindow *window;
