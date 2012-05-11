@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export PATH="${PATH}:/usr/bin:/bin:/usr/local/bin"
+export PATH="${PATH}:/usr/local/bin"
 export GIMP2_DIRECTORY="Library/Application Support/Gimp"
 
 DIR=`dirname "$0"`

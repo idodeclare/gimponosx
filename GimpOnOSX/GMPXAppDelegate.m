@@ -12,6 +12,7 @@
 
 // Same as script, gimp-remote
 static NSString * const kGimpBinary = @"gimp-2.8";
+static NSString * const kUsrLocalBin = @"/usr/local/bin";
 
 static NSString * const kGimpTaskScript = @"script";
 static NSString * const kGimpOpenDocScript = @"openDoc";
@@ -59,7 +60,9 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    if ([GMPXFileUtil findExecutableWithNameInDefaultPath:kGimpBinary] == nil) 
+    // gimp-remote looks in PATH and /usr/local/bin
+    if ([GMPXFileUtil findExecutableWithNameInDefaultPath:kGimpBinary] == nil
+        && [GMPXFileUtil findExecutableWithName:kGimpBinary atPaths:[NSArray arrayWithObject:kUsrLocalBin]] == nil) 
     {
         NSString *msg = [NSString stringWithFormat:@"%@ was not found.", kGimpBinary];
         NSAlert *noGimp = [NSAlert alertWithMessageText:msg defaultButton:nil 

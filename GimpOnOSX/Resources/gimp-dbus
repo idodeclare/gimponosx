@@ -1,6 +1,6 @@
 #!/bin/sh 
 
-export PATH="${PATH}:/usr/bin:/bin:/usr/local/bin"
+export PATH="${PATH}:/usr/local/bin"
 
 set_dbus_session_bus_address () 
 {
