@@ -21,15 +21,21 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
 @interface GMPXAppDelegate ()
 
+// Used by a timer to report to NSApplication the failure to wmctrl gimp
 - (void)cancelDelayedTermination:(NSTimer*)theTimer;
 
+// Call an applescript to activate X11
 - (void)activateX11;
 
+// run the gimp-remote script 
 - (void)startGimpRemoteTask:(NSArray *)arguments;
+// process the notification for a gimp-remote task
 - (void)handleGimpRemoteTaskFinished:(NSNotification *)notification;
 
+// wmctrl -c gimp, etc.
 - (void)wmCloseGimp;
 
+// get the path to a bundle script
 - (NSString *)getPathToScript:(NSString *)scriptName;
 
 @end
@@ -67,16 +73,21 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
+    if (!_remoteTasks)
+        return NSTerminateNow;
+
     //
     // If there are active tasks:
-    // 1) ask the tasks to terminate
-    // 2) schedule a timer to for further handling
+    // 1) attempt to wmctrl gimp
+    // 2) schedule a timer for further handling
     // 3) tell the NSApplication to NSTerminateLater
     //
-    NSArray *tasksToTerm = nil;
-    if (_remoteTasks) {
-        [_tasksLock lock];
-        tasksToTerm = [NSArray arrayWithArray:_remoteTasks];
+    [_tasksLock lock];
+    @try {
+        if ([_remoteTasks count] < 1)
+            return NSTerminateNow;
+    }
+    @finally {
         [_tasksLock unlock];
     }
 
@@ -100,6 +111,7 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
      
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
+    // just activate this app, which will trigger applicationDidBecomeActive:
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     return NO;
 }
@@ -153,8 +165,10 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
     id ntask = [notification object];
     [_tasksLock lock];
     [_remoteTasks removeObject:ntask];
+    BOOL shouldTerminate = ([_remoteTasks count] < 1);
+    [_tasksLock unlock];    
 
-    if ([_remoteTasks count] < 1) 
+    if (shouldTerminate) 
     {
         if (_terminationTimer) {
             // proceed with delayed termination
@@ -167,7 +181,6 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
         [[NSApplication sharedApplication] postEvent:shouldStop atStart:NO];
     }
 
-    [_tasksLock unlock];    
 }
 
 - (void)wmCloseGimp
