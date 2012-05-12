@@ -31,8 +31,12 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 // Call an applescript to activate X11
 - (void)activateX11;
 
-// run the gimp-remote script 
-- (void)startGimpRemoteTask:(NSArray *)arguments;
+// start primary task
+- (void)startPrimaryTaskWithArguments:(NSArray *)arguments;
+
+// run the script 
+- (void)startScript:(NSString *)scriptName withArguments:(NSArray *)arguments;
+
 // process the notification for a gimp-remote task
 - (void)handleGimpRemoteTaskFinished:(NSNotification *)notification;
 
@@ -76,7 +80,7 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
     _shouldActivateX11 = YES;
 
     if (!_remoteTasks)
-        [self startGimpRemoteTask:[NSArray array]];
+        [self startPrimaryTaskWithArguments:[NSArray array]];
 }
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
@@ -145,14 +149,25 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename
 {
-    [self startGimpRemoteTask:[NSArray arrayWithObject:filename]];
+    NSArray *arguments = [NSArray arrayWithObject:filename];
+    if (!_remoteTasks) {
+        [self startPrimaryTaskWithArguments:arguments];
+    }
+    else {
+        [self startScript:kGimpOpenDocScript withArguments:arguments];
+    }
     // we successfully made our best effort to send to gimp :)
     return YES;
 }
 
 - (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames
 {
-    [self startGimpRemoteTask:filenames];
+    if (!_remoteTasks) {
+        [self startPrimaryTaskWithArguments:filenames];
+    }
+    else {
+        [self startScript:kGimpOpenDocScript withArguments:filenames];
+    }
     // we successfully made our best effort to send to gimp :)
     [[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
@@ -165,10 +180,15 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
     [_activateX11 executeAndReturnError:nil];
 }
 
-- (void)startGimpRemoteTask:(NSArray *)arguments
+- (void)startPrimaryTaskWithArguments:(NSArray *)arguments
+{
+    [self startScript:kGimpTaskScript withArguments:arguments];
+}
+
+- (void)startScript:(NSString *)scriptName withArguments:(NSArray *)arguments
 {
     NSTask *ntask = [[[NSTask alloc] init] autorelease];
-    [ntask setLaunchPath:[self getPathToScript:kGimpOpenDocScript]];
+    [ntask setLaunchPath:[self getPathToScript:scriptName]];
     [ntask setArguments:arguments];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(handleGimpRemoteTaskFinished:)

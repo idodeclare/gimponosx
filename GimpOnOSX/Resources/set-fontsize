@@ -27,12 +27,11 @@ FSIZE=`dc -e "1k 72 100 * $DPI / 13 * 5 + 100 / p"`
 
 if [ ! -e "$GTKRC" ]; then
   mkdir -p "$HOME/Library/Application Support/Gimp"
-cat << EOF > "$GTKRC"
+  cat << EOF > "$GTKRC"
 # GIMP gtkrc
 # 
 # This is your personal gtkrc file.  Any variable defined in this file takes
 # precedence over the value defined in the system-wide gtkrc:
-# /tmp/skl/Gimp.app/Contents/Resources/etc/gtk-2.0/gtkrc
 # 
 # This is the formula to calculate the font size for GIMP's menus
 # font_size = (72 / X11_dpi) * 13
@@ -47,16 +46,21 @@ cat << EOF > "$GTKRC"
 # X11 set to 113 dpi 
 # gtk-font-name = "Lucida Grande 8.3"
 #
-gtk-font-name = "Lucida Grande $FSIZE"
-
 EOF
-else
-  grep -q "^ *gtk-font-name" "$GTKRC" && FONTSET=true
-  if [ "$FONTSET" != "true" ]; then
-    echo "" >> "$GTKRC"
-    echo "# default font size" >> "$GTKRC"
-    echo "gtk-font-name = \"Lucida Grande $FSIZE\"" >> "$GTKRC"
-  fi
 fi
 
+OPTSET=
+grep -q "^ *gtk-font-name" "$GTKRC" && OPTSET=true
+if [ "$OPTSET" != "true" ]; then
+  echo "" >> "$GTKRC"
+  echo "# default font size" >> "$GTKRC"
+  echo "gtk-font-name = \"Lucida Grande $FSIZE\"" >> "$GTKRC"
+fi
 
+OPTSET=
+grep -q "^ *gtk-print-preview-command" "$GTKRC" && OPTSET=true
+if [ "$OPTSET" != "true" ]; then
+  echo >> "$GTKRC"
+  echo "# use OS X default pdf-viewer for print preview" >> "$GTKRC"
+  echo "gtk-print-preview-command=\"open %f\"" >> "$GTKRC"
+fi

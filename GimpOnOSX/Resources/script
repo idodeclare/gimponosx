@@ -16,9 +16,6 @@ DIR=`dirname "$0"`
 "$DIR/help-locale"
 
 # this only exists on Leopard, set font size
-if [ -e "$DIR/set-fontsize" ]
-then
-  "$DIR/set-fontsize"
-fi
+"$DIR/set-fontsize"
 
-exec "$DIR/gimp" "$@"
+exec "$DIR/gimp-remote" "$@"
