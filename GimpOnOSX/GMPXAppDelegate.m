@@ -64,8 +64,8 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // gimp-remote looks in PATH and /usr/local/bin
-    if ([GMPXFileUtil findExecutableWithNameInDefaultPath:kGimpBinary] == nil
-        && [GMPXFileUtil findExecutableWithName:kGimpBinary atPaths:[NSArray arrayWithObject:kUsrLocalBin]] == nil) 
+    if (![GMPXFileUtil findExecutableWithName:kGimpBinary atPaths:[NSArray arrayWithObject:kUsrLocalBin]]
+        && ![GMPXFileUtil findExecutableWithNameInDefaultPath:kGimpBinary])
     {
         NSString *msg = [NSString stringWithFormat:@"%@ was not found.", kGimpBinary];
         NSAlert *noGimp = [NSAlert alertWithMessageText:msg defaultButton:nil 
@@ -237,15 +237,15 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
     // call wmctrl if the binary can be found. Otherwise, no graceful shutdown
     // can happen, and Gimp.app will cancel termination
     //
-    NSString *wmctrlFullPath = [GMPXFileUtil findExecutableWithName:kWmctrlProgramName];
-    if (!wmctrlFullPath) {
+    if (![GMPXFileUtil findExecutableWithName:kWmctrlProgramName atPaths:[NSArray arrayWithObject:kUsrLocalBin]]
+        && ![GMPXFileUtil findExecutableWithNameInDefaultPath:kWmctrlProgramName]) 
+    {
         NSLog(@"gimp cannot be shutdown gracefully: %@ is not found", kWmctrlProgramName);
         return;
     }
 
     NSString *fullScript = [self getPathToScript:kWmCloseGimpScript];
-    [NSTask launchedTaskWithLaunchPath:fullScript 
-                             arguments:[NSArray arrayWithObject:wmctrlFullPath]];
+    [NSTask launchedTaskWithLaunchPath:fullScript arguments:[NSArray array]];
 }
 
 - (NSString *)getPathToScript:(NSString *)scriptName

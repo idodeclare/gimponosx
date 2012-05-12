@@ -1,11 +1,7 @@
 #!/bin/sh
 
-WMCTRL=$1
-if test ! -x "$WMCTRL"
-then
-  exit 1
-fi
+export PATH="${PATH}:/usr/local/bin"
 
-"$WMCTRL" -c GIMP
-"$WMCTRL" -c "GNU Image Manipulation Program"
+wmctrl -c GIMP
+wmctrl -c "GNU Image Manipulation Program"
 exit
