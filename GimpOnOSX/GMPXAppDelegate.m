@@ -18,9 +18,8 @@ static NSString * const kGimpTaskScript = @"script";
 static NSString * const kGimpOpenDocScript = @"openDoc";
 static NSString * const kGimpQuitAppScript = @"quitApp";
 
+static NSString * const kWmCloseGimpScript = @"wm-closegimp";
 static NSString * const kWmctrlProgramName = @"wmctrl";
-static NSString * const kGimpWindowName1 = @"GNU Image Manipulation Program";
-static NSString * const kGimpWindowName2 = @"gimp";
 static const NSTimeInterval kTerminateDelaySeconds = 6;
 
 @interface GMPXAppDelegate ()
@@ -244,10 +243,9 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
         return;
     }
 
-    [NSTask launchedTaskWithLaunchPath:wmctrlFullPath 
-                             arguments:[NSArray arrayWithObjects:@"-c", kGimpWindowName1, nil]];
-    [NSTask launchedTaskWithLaunchPath:wmctrlFullPath 
-                             arguments:[NSArray arrayWithObjects:@"-c", kGimpWindowName2, nil]];
+    NSString *fullScript = [self getPathToScript:kWmCloseGimpScript];
+    [NSTask launchedTaskWithLaunchPath:fullScript 
+                             arguments:[NSArray arrayWithObject:wmctrlFullPath]];
 }
 
 - (NSString *)getPathToScript:(NSString *)scriptName

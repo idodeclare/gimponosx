@@ -1,0 +1,11 @@
+#!/bin/sh
+
+WMCTRL=$1
+if test ! -x "$WMCTRL"
+then
+  exit 1
+fi
+
+"$WMCTRL" -c GIMP
+"$WMCTRL" -c "GNU Image Manipulation Program"
+exit

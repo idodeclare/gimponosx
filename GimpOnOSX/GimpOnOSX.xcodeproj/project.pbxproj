@@ -18,6 +18,7 @@
 		4520BADF155B5525002BF54C /* script in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8FA155B5524002BF54C /* script */; };
 		4520BCA1155B5525002BF54C /* xcf.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4520BAD5155B5525002BF54C /* xcf.icns */; };
 		4549220C155C2A6500E79696 /* gimp-dbus in Resources */ = {isa = PBXBuildFile; fileRef = 4549220B155C2A6500E79696 /* gimp-dbus */; };
+		457C1425155DF59D006E60A6 /* wm-closegimp in Resources */ = {isa = PBXBuildFile; fileRef = 457C1424155DF59D006E60A6 /* wm-closegimp */; };
 		45A0F6FD155C59770030EFB3 /* gimprc-skel in Resources */ = {isa = PBXBuildFile; fileRef = 45A0F6FC155C59770030EFB3 /* gimprc-skel */; };
 		45A0F75A155C659B0030EFB3 /* Gimp-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F757155C659B0030EFB3 /* Gimp-Prefix.pch */; };
 		45A0F75B155C659B0030EFB3 /* GMPXAppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A0F758155C659B0030EFB3 /* GMPXAppDelegate.h */; };
@@ -53,6 +54,7 @@
 		4520B8FA155B5524002BF54C /* script */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = script; sourceTree = "<group>"; };
 		4520BAD5155B5525002BF54C /* xcf.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = xcf.icns; sourceTree = "<group>"; };
 		4549220B155C2A6500E79696 /* gimp-dbus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "gimp-dbus"; sourceTree = "<group>"; };
+		457C1424155DF59D006E60A6 /* wm-closegimp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "wm-closegimp"; sourceTree = "<group>"; };
 		45A0F6FC155C59770030EFB3 /* gimprc-skel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "gimprc-skel"; sourceTree = "<group>"; };
 		45A0F757155C659B0030EFB3 /* Gimp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Gimp-Prefix.pch"; sourceTree = "<group>"; };
 		45A0F758155C659B0030EFB3 /* GMPXAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPXAppDelegate.h; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				4520B8F2155B5524002BF54C /* fix_gtkrc */,
 				4520B8F3155B5524002BF54C /* setup-gimpdir */,
 				4520B8F4155B5524002BF54C /* update-fc-cache */,
+				457C1424155DF59D006E60A6 /* wm-closegimp */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				45A0F766155C65CC0030EFB3 /* Credits.rtf in Resources */,
 				45A0F767155C65CC0030EFB3 /* InfoPlist.strings in Resources */,
 				45A0F768155C65CC0030EFB3 /* MainMenu.xib in Resources */,
+				457C1425155DF59D006E60A6 /* wm-closegimp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
