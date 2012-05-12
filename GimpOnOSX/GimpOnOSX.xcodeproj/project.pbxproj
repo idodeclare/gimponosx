@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4520BAD7155B5525002BF54C /* gimp-remote in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F0155B5524002BF54C /* gimp-remote */; };
 		4520BAD8155B5525002BF54C /* help-locale in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F1155B5524002BF54C /* help-locale */; };
-		4520BAD9155B5525002BF54C /* set-fontsize in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F2155B5524002BF54C /* set-fontsize */; };
+		4520BAD9155B5525002BF54C /* fix_gtkrc in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F2155B5524002BF54C /* fix_gtkrc */; };
 		4520BADA155B5525002BF54C /* setup-gimpdir in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F3155B5524002BF54C /* setup-gimpdir */; };
 		4520BADB155B5525002BF54C /* update-fc-cache in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F4155B5524002BF54C /* update-fc-cache */; };
 		4520BADC155B5525002BF54C /* Gimp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4520B8F6155B5524002BF54C /* Gimp.icns */; };
@@ -44,7 +44,7 @@
 		20286C33FDCF999611CA2CEA /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		4520B8F0155B5524002BF54C /* gimp-remote */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "gimp-remote"; sourceTree = "<group>"; };
 		4520B8F1155B5524002BF54C /* help-locale */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "help-locale"; sourceTree = "<group>"; };
-		4520B8F2155B5524002BF54C /* set-fontsize */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "set-fontsize"; sourceTree = "<group>"; };
+		4520B8F2155B5524002BF54C /* fix_gtkrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fix_gtkrc; sourceTree = "<group>"; };
 		4520B8F3155B5524002BF54C /* setup-gimpdir */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "setup-gimpdir"; sourceTree = "<group>"; };
 		4520B8F4155B5524002BF54C /* update-fc-cache */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "update-fc-cache"; sourceTree = "<group>"; };
 		4520B8F6155B5524002BF54C /* Gimp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Gimp.icns; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				4549220B155C2A6500E79696 /* gimp-dbus */,
 				45A0F6FC155C59770030EFB3 /* gimprc-skel */,
 				4520B8F1155B5524002BF54C /* help-locale */,
-				4520B8F2155B5524002BF54C /* set-fontsize */,
+				4520B8F2155B5524002BF54C /* fix_gtkrc */,
 				4520B8F3155B5524002BF54C /* setup-gimpdir */,
 				4520B8F4155B5524002BF54C /* update-fc-cache */,
 			);
@@ -250,7 +250,7 @@
 				B8DCE045056DAC3500C390B0 /* MenuBar.nib in Resources */,
 				4520BAD7155B5525002BF54C /* gimp-remote in Resources */,
 				4520BAD8155B5525002BF54C /* help-locale in Resources */,
-				4520BAD9155B5525002BF54C /* set-fontsize in Resources */,
+				4520BAD9155B5525002BF54C /* fix_gtkrc in Resources */,
 				4520BADA155B5525002BF54C /* setup-gimpdir in Resources */,
 				4520BADB155B5525002BF54C /* update-fc-cache in Resources */,
 				4520BADC155B5525002BF54C /* Gimp.icns in Resources */,

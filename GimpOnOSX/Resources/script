@@ -15,7 +15,7 @@ DIR=`dirname "$0"`
 # setup help, for more information see bin/help-locale
 "$DIR/help-locale"
 
-# this only exists on Leopard, set font size
-"$DIR/set-fontsize"
+# deal with gtkrc in "~/Library/Application Support/Gimp"
+"$DIR/fix_gtkrc"
 
 exec "$DIR/gimp-remote" "$@"
