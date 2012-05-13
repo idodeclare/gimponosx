@@ -9,5 +9,6 @@
 #import "GMPXConstants.h"
 
 const int kShouldStopEvent = 50001;
+const int kShouldFinishDelayedTerminationEvent = 50002;
 
 NSString * const kActivateX11ScriptCode = @"tell application \"X11\" to activate";

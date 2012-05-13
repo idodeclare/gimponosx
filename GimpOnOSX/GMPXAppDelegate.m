@@ -20,7 +20,7 @@ static NSString * const kGimpQuitAppScript = @"quitApp";
 
 static NSString * const kWmCloseGimpScript = @"wm-closegimp";
 static NSString * const kWmctrlProgramName = @"wmctrl";
-static const NSTimeInterval kTerminateDelaySeconds = 6;
+static const NSTimeInterval kTerminateDelaySeconds = 4;
 
 @interface GMPXAppDelegate ()
 
@@ -219,18 +219,23 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
     if (shouldTerminate) 
     {
+        NSEvent *customEvent = nil;
+        
         if (_terminationTimer) {
             // proceed with delayed termination
             [_terminationTimer invalidate];
             [_terminationTimer release];
             _terminationTimer = nil;
-            [[NSApplication sharedApplication] replyToApplicationShouldTerminate:YES];
+            customEvent = [NSEvent otherEventWithType:NSApplicationDefined location:NSPointFromCGPoint(CGPointZero) modifierFlags:0 timestamp:0 windowNumber:0 context:nil subtype:0 
+                                                data1:kShouldFinishDelayedTerminationEvent data2:0];
         }
         else {
-            NSEvent *shouldStop = [NSEvent otherEventWithType:NSApplicationDefined location:NSPointFromCGPoint(CGPointZero) modifierFlags:0 timestamp:0 windowNumber:0 context:nil subtype:0 
-                                                        data1:kShouldStopEvent data2:0];
-            [[NSApplication sharedApplication] postEvent:shouldStop atStart:NO];
+            customEvent = [NSEvent otherEventWithType:NSApplicationDefined location:NSPointFromCGPoint(CGPointZero) modifierFlags:0 timestamp:0 windowNumber:0 context:nil subtype:0 
+                                                data1:kShouldStopEvent data2:0];
         }
+
+        if (customEvent)
+            [[NSApplication sharedApplication] postEvent:customEvent atStart:NO];
     }
 
 }

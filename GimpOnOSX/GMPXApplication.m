@@ -17,6 +17,8 @@
         case NSApplicationDefined:
             if ([theEvent data1] == kShouldStopEvent)
                 [self terminate:theEvent];
+            else if ([theEvent data1] == kShouldFinishDelayedTerminationEvent)
+                [self replyToApplicationShouldTerminate:YES];
             break;
     }
 

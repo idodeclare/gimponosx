@@ -10,5 +10,7 @@
 
 // Used for NSApplicationDefined event to indicate a stop: 
 extern const int kShouldStopEvent;
+// Used for NSApplicationDefined event to finish NSTerminateLater: 
+extern const int kShouldFinishDelayedTerminationEvent;
 
 extern NSString * const kActivateX11ScriptCode;
