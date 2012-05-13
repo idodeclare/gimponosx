@@ -1,0 +1,4 @@
+Run the following from the gimponosx directory to create a 
+release build and install to ~/Applications:
+
+$ ./release_to_homedir_apps.sh
