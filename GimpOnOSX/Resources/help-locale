@@ -21,7 +21,7 @@ GIMPRC="$HOME/Library/Application Support/Gimp/gimprc"
 
 if [ ! -e "$GIMPRC" ]; then
   mkdir -p "$HOME/Library/Application Support/Gimp"
-cat << EOF > "$GIMPRC"
+  cat << EOF > "$GIMPRC"
 # GIMP gimprc
 # 
 # This is your personal gimprc file.  Any variable defined in this file takes
@@ -40,15 +40,17 @@ fi
 LANGS=`defaults read -g AppleLanguages | tr -d "() \n\"" | sed "s/-/_/g;s/Hans/CN/;s/Hant/TW/;s/,/:/g"`
 
 # set help language
-grep -q help-locales "$GIMPRC" && HELP=true
-if [ "$HELP" != "true" ]; then
+OPTSET=
+grep -q help-locales "$GIMPRC" && OPTSET=true
+if [ "$OPTSET" != "true" ]; then
   sed -i "" -e "s/# end of g.*//" "$GIMPRC"
   echo \(help-locales \"$LANGS\"\) >> "$GIMPRC"
   echo "# end of gimprc" >> "$GIMPRC"
 fi
 
 # update language sort order
-grep -q "$LANGS" "$GIMPRC" && LANGS=set
-if [ "$LANGS" != "set" ]; then
+OPTSET=
+grep -q "$LANGS" "$GIMPRC" && OPTSET=true
+if [ "$OPTSET" != "true" ]; then
   sed -i "" -e "s/help-locales \".*\"/help-locales \"$LANGS\"/" "$GIMPRC"
 fi
