@@ -189,8 +189,14 @@ static const NSTimeInterval kTerminateDelaySeconds = 4;
 
 - (void)startScript:(NSString *)scriptName withArguments:(NSArray *)arguments
 {
+    NSString *fullScript = [self getPathToScript:scriptName];
+    if (!fullScript) {
+        NSLog(@"Unknown application script %@", scriptName);
+        return;
+    }
+
     NSTask *ntask = [[[NSTask alloc] init] autorelease];
-    [ntask setLaunchPath:[self getPathToScript:scriptName]];
+    [ntask setLaunchPath:fullScript];
     [ntask setArguments:arguments];
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(handleGimpRemoteTaskFinished:)
@@ -252,8 +258,7 @@ static const NSTimeInterval kTerminateDelaySeconds = 4;
         return;
     }
 
-    NSString *fullScript = [self getPathToScript:kWmCloseGimpScript];
-    [NSTask launchedTaskWithLaunchPath:fullScript arguments:[NSArray array]];
+    [self startScript:kWmCloseGimpScript withArguments:[NSArray array]];
 }
 
 - (NSString *)getPathToScript:(NSString *)scriptName
