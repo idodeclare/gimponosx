@@ -134,9 +134,10 @@ static const NSTimeInterval kTerminateDelaySeconds = 4;
 
 - (void)cancelDelayedTermination:(NSTimer*)theTimer
 {
-    [[NSApplication sharedApplication] replyToApplicationShouldTerminate:NO];
     [_terminationTimer release];
     _terminationTimer = nil;
+
+    [[NSApplication sharedApplication] replyToApplicationShouldTerminate:NO];
 }
      
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
@@ -176,9 +177,9 @@ static const NSTimeInterval kTerminateDelaySeconds = 4;
     if (!_activateX11) 
         _activateX11 = [[NSAppleScript alloc] initWithSource:kActivateX11ScriptCode];
 
-    // hide so that X11 itself can be hidden (or else Gimp.app would 
-    // immediately re-activate X11 when Gimp.app is shown
     [_activateX11 executeAndReturnError:nil];
+    // hide Gimp.app so that X11 itself can be hidden (or else Gimp.app would 
+    // immediately re-activate X11 when Gimp.app is shown)
     [[NSApplication sharedApplication] hide:self];
 }
 
