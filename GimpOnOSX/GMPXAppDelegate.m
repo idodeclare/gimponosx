@@ -178,8 +178,8 @@ static const NSTimeInterval kTerminateDelaySeconds = 6;
 
     // hide so that X11 itself can be hidden (or else Gimp.app would 
     // immediately re-activate X11 when Gimp.app is shown
-    [[NSApplication sharedApplication] hide:self];
     [_activateX11 executeAndReturnError:nil];
+    [[NSApplication sharedApplication] hide:self];
 }
 
 - (void)startPrimaryTaskWithArguments:(NSArray *)arguments
