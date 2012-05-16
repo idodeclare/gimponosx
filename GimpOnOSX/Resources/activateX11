@@ -1,0 +1,11 @@
+tell application "System Events"
+	set byname to (count (every process whose name is "X11"))
+	set bydisplay to (count (every process whose displayed name is "X11"))
+	if bydisplay > 0 then
+		if byname > 0 then
+			tell application "X11" to activate
+		else
+			tell application "XQuartz" to activate
+		end if
+	end if
+end tell

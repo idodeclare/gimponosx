@@ -16,6 +16,7 @@
     NSTimer *_terminationTimer;
     // set to YES when app is up and running successfully
     BOOL _shouldActivateX11;
+    NSDictionary *_X11ScriptError;
 }
 
 @property (assign) IBOutlet NSWindow *window;

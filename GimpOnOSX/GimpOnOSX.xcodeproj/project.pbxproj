@@ -34,6 +34,7 @@
 		45A0F79F155C91E90030EFB3 /* GMPXConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0F79D155C91E90030EFB3 /* GMPXConstants.m */; };
 		45A156CA155D85B100A7975D /* GMPXFileUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 45A156C8155D85B100A7975D /* GMPXFileUtil.h */; };
 		45A156CB155D85B100A7975D /* GMPXFileUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A156C9155D85B100A7975D /* GMPXFileUtil.m */; };
+		45DD3D5B156464D100C9A4C1 /* activateX11 in Resources */ = {isa = PBXBuildFile; fileRef = 45DD3D5A156464D100C9A4C1 /* activateX11 */; };
 		8D0C4E8D0486CD37000505A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0867D6AAFE840B52C02AAC07 /* InfoPlist.strings */; };
 		B8DCE04F056DACAE00C390B0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DCE04E056DACAE00C390B0 /* Security.framework */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		45A0F79D155C91E90030EFB3 /* GMPXConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXConstants.m; sourceTree = "<group>"; };
 		45A156C8155D85B100A7975D /* GMPXFileUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMPXFileUtil.h; sourceTree = "<group>"; };
 		45A156C9155D85B100A7975D /* GMPXFileUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMPXFileUtil.m; sourceTree = "<group>"; };
+		45DD3D5A156464D100C9A4C1 /* activateX11 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = activateX11; sourceTree = "<group>"; };
 		4A9504C8FFE6A3BC11CA0CBA /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		4A9504CAFFE6A41611CA0CBA /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		8D0C4E960486CD37000505A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				4520B8F3155B5524002BF54C /* setup-gimpdir */,
 				4520B8F4155B5524002BF54C /* update-fc-cache */,
 				457C1424155DF59D006E60A6 /* wm-closegimp */,
+				45DD3D5A156464D100C9A4C1 /* activateX11 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				45A0F767155C65CC0030EFB3 /* InfoPlist.strings in Resources */,
 				45A0F768155C65CC0030EFB3 /* MainMenu.xib in Resources */,
 				457C1425155DF59D006E60A6 /* wm-closegimp in Resources */,
+				45DD3D5B156464D100C9A4C1 /* activateX11 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,6 +22,8 @@ static NSString * const kWmCloseGimpScript = @"wm-closegimp";
 static NSString * const kWmctrlProgramName = @"wmctrl";
 static const NSTimeInterval kTerminateDelaySeconds = 4;
 
+static NSString * const kActivateX11Script = @"activateX11";
+
 @interface GMPXAppDelegate ()
 
 // Used by a timer to report to NSApplication the failure to wmctrl gimp
@@ -58,6 +60,7 @@ static const NSTimeInterval kTerminateDelaySeconds = 4;
     [_remoteTasks release];
     [_activateX11 release];
     [_terminationTimer release];
+    [_X11ScriptError release];
     [super dealloc];
 }
 
@@ -174,8 +177,16 @@ static const NSTimeInterval kTerminateDelaySeconds = 4;
 
 - (void)activateX11
 {
+    if (_X11ScriptError)
+        return;
     if (!_activateX11) 
-        _activateX11 = [[NSAppleScript alloc] initWithSource:kActivateX11ScriptCode];
+    {
+        NSURL *scriptURL = [[NSBundle mainBundle] URLForResource:kActivateX11Script withExtension:@""];
+        _activateX11 = [[NSAppleScript alloc] initWithContentsOfURL:scriptURL error:&_X11ScriptError];
+
+        if (_X11ScriptError)
+            return;
+    }
 
     [_activateX11 executeAndReturnError:nil];
     // hide Gimp.app so that X11 itself can be hidden (or else Gimp.app would 
